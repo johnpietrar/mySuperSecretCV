@@ -9,6 +9,7 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
 
 document.querySelectorAll('ul li').forEach(item => {
     item.addEventListener('click', function () {
-        alert(this.textContent);
+        document.querySelectorAll('ul li').forEach(li => li.classList.remove('active'));
+        this.classList.add('active');
     });
 });
