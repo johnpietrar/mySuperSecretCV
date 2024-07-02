@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Function to add a subheading
         function addSubHeading(subheading) {
+            y -= lineHeight; // Add some space before the subheading
             addText(subheading, { size: subheadingSize, font: timesRomanBoldFont });
             y -= lineHeight / 2;
         }
