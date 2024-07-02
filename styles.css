@@ -26,14 +26,16 @@ header {
     text-align: center;
     margin-bottom: 20px;
     position: relative;
+    background: linear-gradient(135deg, #ff8a00, #e52e71);
+    padding: 20px;
+    border-radius: 10px;
 }
 
 header h1 {
     margin: 0;
     font-size: 3em;
     color: #ffffff;
-    background-color: red; /* Temporary background color for visibility */
-    border: 2px solid yellow; /* Temporary border for visibility */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 header #download-pdf {
