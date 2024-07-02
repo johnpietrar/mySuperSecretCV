@@ -38,6 +38,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Function to replace special characters
+    function replaceSpecialCharacters(text) {
+        const map = {
+            'ț': 't',
+            'Ț': 'T',
+            'ș': 's',
+            'Ș': 'S',
+            'ă': 'a',
+            'Ă': 'A',
+            'î': 'i',
+            'Î': 'I',
+            'â': 'a',
+            'Â': 'A'
+        };
+        return text.replace(/[țȚșȘăĂîÎâÂ]/g, function(match) {
+            return map[match];
+        });
+    }
+
     // PDF Download functionality using pdf-lib
     document.getElementById('download-pdf').addEventListener('click', async function () {
         const { PDFDocument, rgb, StandardFonts } = PDFLib;
