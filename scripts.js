@@ -59,37 +59,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // PDF Download functionality using pdf-lib
     document.getElementById('download-pdf').addEventListener('click', async function () {
-        const { PDFDocument, rgb } = PDFLib;
+        const { PDFDocument, rgb, StandardFonts } = PDFLib;
 
         // Create a new PDF document
         const pdfDoc = await PDFDocument.create();
+        const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
         let page = pdfDoc.addPage();
 
         // Set up text and styles
         const { width, height } = page.getSize();
         const fontSize = 12;
+        const lineHeight = fontSize * 1.2;
+        let y = height - 4 * lineHeight;
 
-        // Extract text from the CV content
+        // Function to add text to the PDF
+        function addText(text, options = {}) {
+            const {
+                x = 50,
+                yPos = y,
+                size = fontSize,
+                font = timesRomanFont,
+                color = rgb(0, 0, 0)
+            } = options;
+
+            page.drawText(text, {
+                x,
+                y: yPos,
+                size,
+                font,
+                color
+            });
+        }
+
+        // Extract and format text from the CV content
         let cvContent = document.getElementById('cv-content').innerText;
         cvContent = replaceSpecialCharacters(cvContent);
-        const lines = cvContent.split('\n');
+        const sections = cvContent.split('\n\n');
 
-        // Add text to the PDF
-        let y = height - 4 * fontSize;
-        for (const line of lines) {
-            page.drawText(line, {
-                x: 50,
-                y,
-                size: fontSize,
-                color: rgb(0, 0, 0),
+        // Add sections to the PDF
+        sections.forEach(section => {
+            const lines = section.split('\n');
+            lines.forEach(line => {
+                addText(line);
+                y -= lineHeight;
+                if (y < 4 * lineHeight) {
+                    page = pdfDoc.addPage();
+                    y = height - 4 * lineHeight;
+                }
             });
-            y -= fontSize + 2;
-            if (y < 4 * fontSize) {
-                // Add a new page if there is not enough space
-                page = pdfDoc.addPage();
-                y = height - 4 * fontSize;
-            }
-        }
+            y -= lineHeight; // Add extra space between sections
+        });
 
         // Serialize the PDF to bytes
         const pdfBytes = await pdfDoc.save();
