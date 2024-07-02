@@ -38,24 +38,53 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // PDF Download functionality
-    document.getElementById('download-pdf').addEventListener('click', function () {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const content = document.getElementById('cv-content');
-        html2canvas(content).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const imgProps = doc.getImageProperties(imgData);
-            const pdfWidth = doc.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            doc.save('ionut_cv.pdf');
-        });
-    });
+    // PDF Download functionality using pdf-lib
+    document.getElementById('download-pdf').addEventListener('click', async function () {
+        const { PDFDocument, rgb } = PDFLib;
 
-    // Ensure background music plays
-    const music = document.getElementById('background-music');
-    music.play().catch(error => {
-        console.error("Music play failed:", error);
+        // Create a new PDF document
+        const pdfDoc = await PDFDocument.create();
+        const page = pdfDoc.addPage();
+
+        // Set up text and styles
+        const { width, height } = page.getSize();
+        const fontSize = 12;
+
+        // Extract text from the CV content
+        const cvContent = document.getElementById('cv-content').innerText;
+        const lines = cvContent.split('\n');
+
+        // Add text to the PDF
+        let y = height - 4 * fontSize;
+        for (const line of lines) {
+            page.drawText(line, {
+                x: 50,
+                y,
+                size: fontSize,
+                color: rgb(0, 0, 0),
+            });
+            y -= fontSize + 2;
+            if (y < 4 * fontSize) {
+                // Add a new page if there is not enough space
+                page = pdfDoc.addPage();
+                y = height - 4 * fontSize;
+            }
+        }
+
+        // Serialize the PDF to bytes
+        const pdfBytes = await pdfDoc.save();
+
+        // Create a Blob from the PDF bytes
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+
+        // Create a link element to download the PDF
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'ionut_cv.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     });
 });
