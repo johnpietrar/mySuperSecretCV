@@ -70,14 +70,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set up text and styles
         const { width, height } = page.getSize();
         const fontSize = 12;
-        const lineHeight = fontSize * 1.2;
+        const titleSize = 18;
+        const subheadingSize = 14;
+        const lineHeight = fontSize * 1.5;
         const sectionGap = lineHeight * 2;
-        let y = height - 4 * lineHeight;
+        const margin = 50;
+        let y = height - margin;
 
         // Function to add text to the PDF
         function addText(text, options = {}) {
             const {
-                x = 50,
+                x = margin,
                 yPos = y,
                 size = fontSize,
                 font = timesRomanFont,
@@ -91,23 +94,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 font,
                 color
             });
+            y -= lineHeight;
         }
 
         // Function to add a section title
         function addSectionTitle(title) {
-            addText(title, { size: fontSize + 4, font: timesRomanBoldFont, yPos: y });
-            y -= lineHeight + sectionGap;
+            addText(title, { size: titleSize, font: timesRomanBoldFont });
+            y -= sectionGap;
         }
 
         // Function to add a subheading
         function addSubHeading(subheading) {
-            addText(subheading, { size: fontSize + 2, font: timesRomanBoldFont, yPos: y });
-            y -= lineHeight;
+            addText(subheading, { size: subheadingSize, font: timesRomanBoldFont });
+            y -= lineHeight / 2;
         }
 
         // Function to add a bullet point
         function addBulletPoint(text) {
-            addText(`• ${text}`, { x: 60, yPos: y });
+            addText(`• ${text}`, { x: margin + 20 });
+            y -= lineHeight / 2;
+        }
+
+        // Function to add a horizontal line
+        function addDivider() {
+            page.drawLine({
+                start: { x: margin, y: y },
+                end: { x: width - margin, y: y },
+                thickness: 1,
+                color: rgb(0.5, 0.5, 0.5)
+            });
             y -= lineHeight;
         }
 
@@ -119,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add sections to the PDF
         sections.forEach(section => {
             const lines = section.split('\n');
-            if (lines[0].startsWith('Professional Summary')) {
+            if (lines[0].startsWith('Professional Summary') || lines[0].startsWith('Professional Experience') || lines[0].startsWith('Education') || lines[0].startsWith('Skills') || lines[0].startsWith('Certifications') || lines[0].startsWith('Recommendations') || lines[0].startsWith('Publications') || lines[0].startsWith('Achievements')) {
                 addSectionTitle(lines[0]);
             } else {
                 addSubHeading(lines[0]); // First line as section subheading
@@ -130,13 +145,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     addText(line);
                 }
-                y -= lineHeight;
-                if (y < 4 * lineHeight) {
+                if (y < margin) {
                     page = pdfDoc.addPage();
-                    y = height - 4 * lineHeight;
+                    y = height - margin;
                 }
             });
-            y -= sectionGap; // Add extra space between sections
+            addDivider(); // Add divider between sections
         });
 
         // Serialize the PDF to bytes
