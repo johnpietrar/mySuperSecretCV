@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create a new PDF document
         const pdfDoc = await PDFDocument.create();
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+        const timesRomanBoldFont = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
         let page = pdfDoc.addPage();
 
         // Set up text and styles
@@ -94,8 +95,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Function to add a section title
         function addSectionTitle(title) {
-            addText(title, { size: fontSize + 2, yPos: y });
+            addText(title, { size: fontSize + 4, font: timesRomanBoldFont, yPos: y });
             y -= lineHeight + sectionGap;
+        }
+
+        // Function to add a subheading
+        function addSubHeading(subheading) {
+            addText(subheading, { size: fontSize + 2, font: timesRomanBoldFont, yPos: y });
+            y -= lineHeight;
+        }
+
+        // Function to add a bullet point
+        function addBulletPoint(text) {
+            addText(`• ${text}`, { x: 60, yPos: y });
+            y -= lineHeight;
         }
 
         // Extract and format text from the CV content
@@ -106,9 +119,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add sections to the PDF
         sections.forEach(section => {
             const lines = section.split('\n');
-            addSectionTitle(lines[0]); // First line as section title
+            if (lines[0].startsWith('Professional Summary')) {
+                addSectionTitle(lines[0]);
+            } else {
+                addSubHeading(lines[0]); // First line as section subheading
+            }
             lines.slice(1).forEach(line => {
-                addText(line);
+                if (line.startsWith('•')) {
+                    addBulletPoint(line.substring(2));
+                } else {
+                    addText(line);
+                }
                 y -= lineHeight;
                 if (y < 4 * lineHeight) {
                     page = pdfDoc.addPage();
