@@ -28,13 +28,15 @@ document.addEventListener('DOMContentLoaded', function() {
     gsap.from("header p", { duration: 1, y: 50, opacity: 0, delay: 0.5 });
 
     // Scroll Reveal
-    ScrollReveal().reveal('.animate__animated', {
-        distance: '50px',
-        duration: 1000,
-        easing: 'ease-in-out',
-        origin: 'bottom',
-        interval: 200
-    });
+    if (typeof ScrollReveal !== 'undefined') {
+        ScrollReveal().reveal('.animate__animated', {
+            distance: '50px',
+            duration: 1000,
+            easing: 'ease-in-out',
+            origin: 'bottom',
+            interval: 200
+        });
+    }
 
     // PDF Download functionality
     document.getElementById('download-pdf').addEventListener('click', function () {
