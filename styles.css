@@ -31,9 +31,9 @@ header {
 header h1 {
     margin: 0;
     font-size: 3em;
-    color: #ffffff; /* Change title color to white for better contrast */
-    position: relative;
-    animation: bounceIn 1s;
+    color: #ffffff;
+    background-color: red; /* Temporary background color for visibility */
+    border: 2px solid yellow; /* Temporary border for visibility */
 }
 
 header #download-pdf {
@@ -51,17 +51,6 @@ header #download-pdf {
 header #download-pdf:hover {
     background: #333;
     color: #ffeb3b;
-}
-
-@keyframes bounceIn {
-    from {
-        opacity: 0;
-        transform: translateY(-2000px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 nav {
@@ -104,7 +93,7 @@ section {
 }
 
 section h2 {
-    color: #ffeb3b; /* Same color for section headers */
+    color: #ffeb3b;
     margin-bottom: 10px;
     font-size: 1.8em;
     border-bottom: 2px solid #ffeb3b;
