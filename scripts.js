@@ -137,32 +137,85 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Extract and format text from the CV content
-        let cvContent = document.getElementById('cv-content').innerText;
-        cvContent = replaceSpecialCharacters(cvContent);
-        const sections = cvContent.split('\n\n');
-
-        // Add sections to the PDF
-        sections.forEach(section => {
-            const lines = section.split('\n');
-            if (lines[0].startsWith('Professional Summary') || lines[0].startsWith('Professional Experience') || lines[0].startsWith('Education') || lines[0].startsWith('Skills') || lines[0].startsWith('Certifications') || lines[0].startsWith('Recommendations') || lines[0].startsWith('Publications') || lines[0].startsWith('Achievements')) {
-                addSectionTitle(lines[0]);
-                checkAndAddNewPage();
-            } else {
-                addSubHeading(lines[0]); // First line as section subheading
-                checkAndAddNewPage();
-            }
-            lines.slice(1).forEach(line => {
-                if (line.startsWith('•')) {
-                    addBulletPoint(line.substring(2));
+        // Function to format and add sections to the PDF
+        function addSection(sectionTitle, sectionContent) {
+            addSectionTitle(sectionTitle);
+            checkAndAddNewPage();
+            sectionContent.forEach(content => {
+                if (content.startsWith('•')) {
+                    addBulletPoint(content.substring(2));
                 } else {
-                    addText(line);
+                    addText(content);
                 }
                 checkAndAddNewPage();
             });
-            addDivider(); // Add divider between sections
+            addDivider();
             checkAndAddNewPage();
-        });
+        }
+
+        // Extract and format text from the CV content
+        const sections = {
+            "Professional Summary": [
+                "Passionate and experienced Senior Software Engineer with over 8 years in the industry. Skilled in backend development, particularly with Node.js and AWS. Proven ability to lead projects, manage teams, and deliver high-quality software solutions on time. Known for strong problem-solving skills, innovation, and the ability to work independently and collaboratively within a team.",
+                "Contact me at: johnpietrar@gmail.com"
+            ],
+            "Professional Experience": [
+                "Mindera",
+                "Senior Software Engineer (Apr 2022 - Present)",
+                "• Utilizing Amazon Web Services (AWS) and Node.js to build and maintain robust applications.",
+                "• Mentoring junior developers and conducting code reviews to ensure high code quality.",
+                "• Facilitating and leading the interview process.",
+                "• Collaborating with cross-functional teams to define and achieve project goals.",
+                "",
+                "3Pillar Global",
+                "Software Engineer (Aug 2019 - Apr 2022)",
+                "• Developed and maintained web applications using AWS and Node.js.",
+                "• Participated in the full software development lifecycle, from design to deployment.",
+                "• Implemented microservices architecture to enhance application scalability and maintainability.",
+                "",
+                "Webamboos",
+                "Software Development Specialist (Aug 2018 - Aug 2019)",
+                "• Specialized in developing server-side applications and APIs.",
+                "• Integrated AWS services to improve application performance and scalability.",
+                "• Worked on optimization and enhancement of existing codebases.",
+                "",
+                "Flex",
+                "Software Development Engineer (May 2016 - Aug 2018)",
+                "• Designed and developed software solutions for various clients.",
+                "• Focused on communication and optimization within applications.",
+                "• Collaborated with teams to deliver high-quality software on time."
+            ],
+            "Education": [
+                "Politehnica University Timisoara - Bachelor's degree, Computer Science"
+            ],
+            "Skills": [
+                "Programming Languages: Node.js, TypeScript, C#, Python",
+                "Cloud Services: Amazon Web Services (AWS)",
+                "Database Technologies: NoSQL, SQL",
+                "Development Practices: Microservices, Data Analysis, Optimization",
+                "Professional Skills: Communication, Team Leadership, Problem-Solving"
+            ],
+            "Certifications": [
+                "Passed LinkedIn Skill Assessments for Node.js, AWS"
+            ],
+            "Recommendations": [
+                "Daniel Dughila - Engineering Manager:",
+                "Ionuț is a passionate software engineer with a valuable quality, you can depend on him! We worked together on a fast-paced project, building a video portal with a tight deadline. Ionuț stepped up; I relied on him for complex tasks, working independently, asking the right questions, getting the job done. He was always willing to help his colleagues. I am lucky to have worked together!"
+            ],
+            "Publications": [
+                "Architecting Robust Software: Embracing Modular Design",
+                "Crafting Effective Documentation for TypeScript Microservices Projects"
+            ],
+            "Achievements": [
+                "Innovation Award for contributions to project efficiency and new feature development at 3Pillar Global.",
+                "Successfully led the development and deployment of multiple high-impact projects."
+            ]
+        };
+
+        // Add sections to the PDF
+        for (const [sectionTitle, sectionContent] of Object.entries(sections)) {
+            addSection(sectionTitle, sectionContent);
+        }
 
         // Serialize the PDF to bytes
         const pdfBytes = await pdfDoc.save();
