@@ -43,11 +43,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const content = document.getElementById('cv-content');
         html2canvas(content).then(canvas => {
             const imgData = canvas.toDataURL('image/png');
-            const imgProps= doc.getImageProperties(imgData);
+            const imgProps = doc.getImageProperties(imgData);
             const pdfWidth = doc.internal.pageSize.getWidth();
             const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
             doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
             doc.save('ionut_cv.pdf');
         });
+    });
+
+    // Ensure background music plays
+    const music = document.getElementById('background-music');
+    music.play().catch(error => {
+        console.error("Music play failed:", error);
     });
 });
