@@ -159,3 +159,17 @@ ul li.active {
         font-size: 1em;
     }
 }
+
+a {
+    color: #1E90FF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #87CEFA;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #9370DB;
+}
