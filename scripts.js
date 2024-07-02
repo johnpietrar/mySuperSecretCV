@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Function to add a section title
         function addSectionTitle(title) {
+            y -= lineHeight; // Add some space before the title
             addText(title, { size: titleSize, font: timesRomanBoldFont });
             y -= sectionGap;
         }
@@ -117,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Function to add a horizontal line
         function addDivider() {
+            y -= lineHeight / 2; // Add some space before the divider
             page.drawLine({
                 start: { x: margin, y: y },
                 end: { x: width - margin, y: y },
