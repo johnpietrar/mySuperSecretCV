@@ -31,7 +31,7 @@ header {
 header h1 {
     margin: 0;
     font-size: 3em;
-    color: #ffeb3b; /* Match the color of the Professional Summary */
+    color: #ffffff; /* Change title color to white for better contrast */
     position: relative;
     animation: bounceIn 1s;
 }
