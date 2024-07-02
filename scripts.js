@@ -38,10 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Diagnostic logging for the title element
-    const titleElement = document.getElementById('cv-title');
-    console.log('Title element dimensions:', titleElement.getBoundingClientRect());
-
     // PDF Download functionality using pdf-lib
     document.getElementById('download-pdf').addEventListener('click', async function () {
         const { PDFDocument, rgb, StandardFonts } = PDFLib;
