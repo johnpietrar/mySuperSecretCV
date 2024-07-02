@@ -38,20 +38,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Function to replace special characters
+    function replaceSpecialCharacters(text) {
+        const map = {
+            'ț': 't',
+            'Ț': 'T',
+            'ș': 's',
+            'Ș': 'S',
+            'ă': 'a',
+            'Ă': 'A',
+            'î': 'i',
+            'Î': 'I',
+            'â': 'a',
+            'Â': 'A'
+        };
+        return text.replace(/[țȚșȘăĂîÎâÂ]/g, function(match) {
+            return map[match];
+        });
+    }
+
     // PDF Download functionality using pdf-lib
     document.getElementById('download-pdf').addEventListener('click', async function () {
         const { PDFDocument, rgb } = PDFLib;
 
         // Create a new PDF document
         const pdfDoc = await PDFDocument.create();
-        const page = pdfDoc.addPage();
+        let page = pdfDoc.addPage();
 
         // Set up text and styles
         const { width, height } = page.getSize();
         const fontSize = 12;
 
         // Extract text from the CV content
-        const cvContent = document.getElementById('cv-content').innerText;
+        let cvContent = document.getElementById('cv-content').innerText;
+        cvContent = replaceSpecialCharacters(cvContent);
         const lines = cvContent.split('\n');
 
         // Add text to the PDF
