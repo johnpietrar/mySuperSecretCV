@@ -66,10 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // PDF Download functionality using pdf-lib
     document.getElementById('download-pdf').addEventListener('click', async function () {
-        const { PDFDocument, rgb } = PDFLib;
+        const { PDFDocument, rgb, StandardFonts } = PDFLib;
+        const fontkit = await import('fontkit');
 
         // Create a new PDF document
         const pdfDoc = await PDFDocument.create();
+        pdfDoc.registerFontkit(fontkit.default);
+
         const customFontBytes = await loadCustomFont();
         const customFont = await pdfDoc.embedFont(customFontBytes);
         const customFontBold = await pdfDoc.embedFont(customFontBytes, { subset: true });
