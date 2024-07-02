@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const { width, height } = page.getSize();
         const fontSize = 12;
         const lineHeight = fontSize * 1.2;
+        const sectionGap = lineHeight * 2;
         let y = height - 4 * lineHeight;
 
         // Function to add text to the PDF
@@ -91,6 +92,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+        // Function to add a section title
+        function addSectionTitle(title) {
+            addText(title, { size: fontSize + 2, yPos: y });
+            y -= lineHeight + sectionGap;
+        }
+
         // Extract and format text from the CV content
         let cvContent = document.getElementById('cv-content').innerText;
         cvContent = replaceSpecialCharacters(cvContent);
@@ -99,7 +106,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add sections to the PDF
         sections.forEach(section => {
             const lines = section.split('\n');
-            lines.forEach(line => {
+            addSectionTitle(lines[0]); // First line as section title
+            lines.slice(1).forEach(line => {
                 addText(line);
                 y -= lineHeight;
                 if (y < 4 * lineHeight) {
@@ -107,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     y = height - 4 * lineHeight;
                 }
             });
-            y -= lineHeight; // Add extra space between sections
+            y -= sectionGap; // Add extra space between sections
         });
 
         // Serialize the PDF to bytes
