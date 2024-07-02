@@ -57,14 +57,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Load the custom font
+    async function loadCustomFont() {
+        const url = 'path/to/DejaVuSans.ttf'; // Update the path to your font file
+        const fontBytes = await fetch(url).then(res => res.arrayBuffer());
+        return fontBytes;
+    }
+
     // PDF Download functionality using pdf-lib
     document.getElementById('download-pdf').addEventListener('click', async function () {
-        const { PDFDocument, rgb, StandardFonts } = PDFLib;
+        const { PDFDocument, rgb } = PDFLib;
 
         // Create a new PDF document
         const pdfDoc = await PDFDocument.create();
-        const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
-        const timesRomanBoldFont = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
+        const customFontBytes = await loadCustomFont();
+        const customFont = await pdfDoc.embedFont(customFontBytes);
+        const customFontBold = await pdfDoc.embedFont(customFontBytes, { subset: true });
         let page = pdfDoc.addPage();
 
         // Set up text and styles
@@ -83,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 x = margin,
                 yPos = y,
                 size = fontSize,
-                font = timesRomanFont,
+                font = customFont,
                 color = rgb(0, 0, 0)
             } = options;
 
@@ -100,14 +108,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Function to add a section title
         function addSectionTitle(title) {
             y -= sectionGap / 2; // Add some space before the title
-            addText(title, { size: titleSize, font: timesRomanBoldFont });
+            addText(title, { size: titleSize, font: customFontBold });
             y -= sectionGap;
         }
 
         // Function to add a subheading
         function addSubHeading(subheading) {
             y -= lineHeight; // Add some space before the subheading
-            addText(subheading, { size: subheadingSize, font: timesRomanBoldFont });
+            addText(subheading, { size: subheadingSize, font: customFontBold });
             y -= lineHeight / 2;
         }
 
