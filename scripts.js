@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Function to add a section title
         function addSectionTitle(title) {
-            y -= lineHeight; // Add some space before the title
+            y -= sectionGap / 2; // Add some space before the title
             addText(title, { size: titleSize, font: timesRomanBoldFont });
             y -= sectionGap;
         }
@@ -128,6 +128,14 @@ document.addEventListener('DOMContentLoaded', function() {
             y -= lineHeight;
         }
 
+        // Function to check and add a new page if needed
+        function checkAndAddNewPage() {
+            if (y < margin) {
+                page = pdfDoc.addPage();
+                y = height - margin;
+            }
+        }
+
         // Extract and format text from the CV content
         let cvContent = document.getElementById('cv-content').innerText;
         cvContent = replaceSpecialCharacters(cvContent);
@@ -138,8 +146,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const lines = section.split('\n');
             if (lines[0].startsWith('Professional Summary') || lines[0].startsWith('Professional Experience') || lines[0].startsWith('Education') || lines[0].startsWith('Skills') || lines[0].startsWith('Certifications') || lines[0].startsWith('Recommendations') || lines[0].startsWith('Publications') || lines[0].startsWith('Achievements')) {
                 addSectionTitle(lines[0]);
+                checkAndAddNewPage();
             } else {
                 addSubHeading(lines[0]); // First line as section subheading
+                checkAndAddNewPage();
             }
             lines.slice(1).forEach(line => {
                 if (line.startsWith('•')) {
@@ -147,12 +157,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     addText(line);
                 }
-                if (y < margin) {
-                    page = pdfDoc.addPage();
-                    y = height - margin;
-                }
+                checkAndAddNewPage();
             });
             addDivider(); // Add divider between sections
+            checkAndAddNewPage();
         });
 
         // Serialize the PDF to bytes
