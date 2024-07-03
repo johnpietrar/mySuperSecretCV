@@ -212,12 +212,12 @@ a:visited {
 }
 
 .pacman {
-    background-image: url('path/to/pacman.png');
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/59/Pacman.png');
     animation: movePacman 5s linear infinite;
 }
 
 .ghost {
-    background-image: url('path/to/ghost.png');
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f4/Pacman_ghost.svg');
     animation: moveGhost 5s linear infinite;
 }
 
