@@ -100,7 +100,7 @@ section {
 section h2 {
     color: #0f0;
     margin-bottom: 10px;
-    font-size: 1.4em;
+    font-size: 1.8em; /* Adjusted size for better visibility */
     border-bottom: 2px solid #0f0;
     padding-bottom: 5px;
 }
@@ -254,25 +254,4 @@ a:visited {
     0% { left: -60px; }
     90% { left: 100%; }
     100% { opacity: 0; }
-}
-
-/* Typing effect */
-.typewriter-text {
-    display: inline-block;
-    overflow: hidden;
-    border-right: .15em solid #0f0;
-    white-space: nowrap;
-    margin: 0 auto;
-    letter-spacing: .15em;
-    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-}
-
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: #0f0; }
 }
