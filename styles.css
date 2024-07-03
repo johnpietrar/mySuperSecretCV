@@ -257,7 +257,7 @@ a:visited {
 .ghost .pupil {
     fill: #0000FF;
     transition: transform 0.1s;
-    r: 1; /* Increase the radius to make the pupils larger */
+    r: 1.2; /* Increase the radius to make the pupils larger */
 }
 
 #ghost-red {
