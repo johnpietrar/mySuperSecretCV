@@ -156,38 +156,22 @@ document.addEventListener('DOMContentLoaded', function() {
         function typeNextSection() {
             if (index < sections.length) {
                 const section = sections[index];
-                const content = section.innerHTML;
-                section.innerHTML = ''; // Clear the section content
                 section.style.visibility = 'visible';
-                typeWriter(section, content, 0, () => {
-                    index++;
-                    typeNextSection();
+                const typewriter = new Typewriter(section.querySelector('.typewriter'), {
+                    loop: false,
+                    delay: 1
                 });
+                typewriter
+                    .typeString(section.querySelector('.typewriter').innerHTML)
+                    .callFunction(() => {
+                        section.querySelector('.typewriter').innerHTML = '';
+                    })
+                    .start();
+                index++;
+                setTimeout(typeNextSection, section.querySelector('.typewriter').innerHTML.length * 1);
             }
         }
 
         typeNextSection();
-    }
-
-    // Function to type out text letter by letter
-    function typeWriter(element, text, index, callback) {
-        if (index < text.length) {
-            const char = text.charAt(index);
-            if (char === '<') {
-                const endTagIndex = text.indexOf('>', index);
-                if (endTagIndex !== -1) {
-                    const tag = text.substring(index, endTagIndex + 1);
-                    element.innerHTML += tag;
-                    typeWriter(element, text, endTagIndex + 1, callback);
-                }
-            } else {
-                element.innerHTML += char;
-                setTimeout(() => {
-                    typeWriter(element, text, index + 1, callback);
-                }, 1); // Adjust typing speed here
-            }
-        } else {
-            callback();
-        }
     }
 });
