@@ -180,13 +180,11 @@ document.addEventListener('DOMContentLoaded', function() {
             pupil2.setAttribute('cx', parseFloat(eye2.getAttribute('cx')) + clampedOffsetX);
             pupil2.setAttribute('cy', parseFloat(eye2.getAttribute('cy')) + clampedOffsetY);
         });
-    });
 
-    // Music play button functionality
-    const musicButton = document.getElementById('play-music');
-    const backgroundMusic = document.getElementById('background-music');
-
-    musicButton.addEventListener('click', () => {
-        backgroundMusic.play();
+        // Play background music on mouse move
+        const backgroundMusic = document.getElementById('background-music');
+        if (backgroundMusic.paused) {
+            backgroundMusic.play();
+        }
     });
 });
