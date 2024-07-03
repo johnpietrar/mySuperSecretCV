@@ -19,9 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hide loading screen after content is loaded
     const loadingScreen = document.getElementById('loading-screen');
-    setTimeout(() => {
+    const loadingProgress = document.querySelector('.loading-progress');
+    loadingProgress.addEventListener('animationend', () => {
         loadingScreen.style.display = 'none';
-    }, 2000); // Adjust time based on your preference
+    });
 
     // GSAP Animations
     gsap.from("header h1", { duration: 1, y: -50, opacity: 0 });
