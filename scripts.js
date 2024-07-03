@@ -145,3 +145,13 @@ document.addEventListener('DOMContentLoaded', function() {
         URL.revokeObjectURL(url);
     });
 });
+
+document.addEventListener('selectionchange', function() {
+    const selection = document.getSelection();
+    if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const span = document.createElement('span');
+        span.classList.add('highlight-animation');
+        range.surroundContents(span);
+    }
+});
