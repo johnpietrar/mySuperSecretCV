@@ -158,12 +158,25 @@ ul li.active {
         margin-bottom: 10px;
     }
 
-    header p {
-        font-size: 1em;
-    }
-
     header #download-pdf {
         margin-top: 10px;
+    }
+
+    .ghost {
+        width: 30px;
+        height: 30px;
+    }
+
+    #ghost-red {
+        animation: moveGhost 5s linear infinite;
+    }
+
+    #ghost-blue {
+        animation: moveGhost 5s linear infinite 0.3s;
+    }
+
+    #ghost-pink {
+        animation: moveGhost 5s linear infinite 0.6s;
     }
 }
 
