@@ -17,13 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Hide loading screen after 3 seconds
+    // Hide loading screen after content is loaded
     const loadingScreen = document.getElementById('loading-screen');
     const loadingProgress = document.querySelector('.loading-progress');
     loadingProgress.addEventListener('animationend', () => {
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 2000); // 2 seconds
+        loadingScreen.style.display = 'none';
     });
 
     // GSAP Animations
@@ -146,5 +144,21 @@ document.addEventListener('DOMContentLoaded', function() {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+    });
+
+    // Ghost scare effect on hover
+    const downloadButton = document.getElementById('download-pdf');
+    const ghosts = document.querySelectorAll('.ghost');
+
+    downloadButton.addEventListener('mouseenter', () => {
+        ghosts.forEach(ghost => {
+            ghost.classList.add('scared');
+        });
+    });
+
+    downloadButton.addEventListener('mouseleave', () => {
+        ghosts.forEach(ghost => {
+            ghost.classList.remove('scared');
+        });
     });
 });
