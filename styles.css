@@ -299,3 +299,9 @@ a:visited {
     90% { left: 100%; }
     100% { opacity: 0; }
 }
+
+@keyframes moveGhostScared {
+    0% { left: 100%; }
+    90% { left: -60px; }
+    100% { opacity: 0; }
+}
