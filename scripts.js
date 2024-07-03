@@ -149,21 +149,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to start the typing effect
     function startTypingEffect() {
-        const sections = document.querySelectorAll('.cv-section');
-        sections.forEach(section => {
-            const content = section.innerHTML;
-            section.innerHTML = ''; // Clear the section content
-            typeWriter(section, content, 0);
-        });
+        const sections = Array.from(document.querySelectorAll('.cv-section'));
+        let index = 0;
+
+        function typeNextSection() {
+            if (index < sections.length) {
+                const section = sections[index];
+                const content = section.innerHTML;
+                section.innerHTML = ''; // Clear the section content
+                typeWriter(section, content, 0, () => {
+                    index++;
+                    typeNextSection();
+                });
+            }
+        }
+
+        typeNextSection();
     }
 
     // Function to type out text letter by letter
-    function typeWriter(element, text, index) {
+    function typeWriter(element, text, index, callback) {
         if (index < text.length) {
             element.innerHTML += text.charAt(index);
             setTimeout(() => {
-                typeWriter(element, text, index + 1);
-            }, 50); // Adjust typing speed here
+                typeWriter(element, text, index + 1, callback);
+            }, 10); // Adjust typing speed here
+        } else {
+            callback();
         }
     }
 });
