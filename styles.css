@@ -270,15 +270,6 @@ a:visited {
     fill: #0000FF;
 }
 
-.ghost.scared {
-    fill: #0000FF !important;
-}
-
-.ghost.scared .eye,
-.ghost.scared .pupil {
-    fill: #FFF !important;
-}
-
 #ghost-red {
     fill: #FF0000;
     animation: moveGhost 5s linear infinite;
@@ -298,9 +289,4 @@ a:visited {
     0% { left: -60px; }
     90% { left: 100%; }
     100% { opacity: 0; }
-}
-
-@keyframes moveGhostScared {
-    0% { left: 100%; }
-    100% { left: -60px; }
 }
