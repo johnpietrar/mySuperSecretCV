@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.innerHTML += char;
                 setTimeout(() => {
                     typeWriter(element, text, index + 1, callback);
-                }, 10); // Adjust typing speed here
+                }, 5); // Adjust typing speed here
             }
         } else {
             callback();
