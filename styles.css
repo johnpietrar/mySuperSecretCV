@@ -257,6 +257,6 @@ a:visited {
 }
 
 ::selection {
-    background: url('path/to/pacman.png') no-repeat;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50"><circle cx="50" cy="50" r="50" fill="yellow"/><polygon points="50,50 100,0 100,100" fill="black"/></svg>') no-repeat;
     color: #0f0;
 }
