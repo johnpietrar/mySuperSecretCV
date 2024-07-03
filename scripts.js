@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 color = rgb(0, 0, 0)
             } = options;
 
-            page.drawText(text, {
+            page.drawText(replaceSpecialCharacters(text), {
                 x,
                 y: yPos,
                 size,
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Function to add a section title
         function addSectionTitle(title) {
-            addText(title, { size: titleSize, yPos: y });
+            addText(replaceSpecialCharacters(title), { size: titleSize, yPos: y });
             y -= lineHeight + sectionGap;
         }
 
