@@ -133,6 +133,13 @@ ul li {
     color: #0f0;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    display: flex; /* Ensures inline bullet points */
+    align-items: center; /* Aligns text vertically */
+}
+
+ul li::before {
+    content: '•'; /* Adds bullet point */
+    margin-right: 10px; /* Space between bullet point and text */
 }
 
 ul li:hover {
