@@ -212,11 +212,11 @@ a:visited {
 
 #pacman-svg {
     fill: #FFD700;
-    animation: movePacman 5s linear infinite;
+    animation: movePacman 5s linear infinite, openCloseMouth 0.5s linear infinite;
 }
 
 #ghost-svg {
-    fill: #FF0000;
+    fill: #FFFFFF;
     animation: moveGhost 5s linear infinite;
 }
 
@@ -228,4 +228,9 @@ a:visited {
 @keyframes moveGhost {
     0% { left: -120px; }
     100% { left: 100%; }
+}
+
+@keyframes openCloseMouth {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(30deg); }
 }
