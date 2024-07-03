@@ -69,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set up text and styles
         const { width, height } = page.getSize();
         const fontSize = 12;
-        const lineHeight = fontSize * 1.2;
+        const titleSize = 16;
+        const lineHeight = fontSize * 1.5;
         const sectionGap = lineHeight * 2;
         let y = height - 4 * lineHeight;
 
@@ -90,32 +91,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 font,
                 color
             });
+            y -= lineHeight;
         }
 
         // Function to add a section title
         function addSectionTitle(title) {
-            addText(title, { size: fontSize + 2, yPos: y });
+            addText(title, { size: titleSize, yPos: y });
             y -= lineHeight + sectionGap;
         }
 
-        // Extract and format text from the CV content
-        let cvContent = document.getElementById('cv-content').innerText;
-        cvContent = replaceSpecialCharacters(cvContent);
-        const sections = cvContent.split('\n\n');
+        // Function to process each section
+        function processSection(section) {
+            const sectionTitle = section.querySelector('h2').innerText;
+            const contentItems = section.querySelectorAll('p, ul');
+            addSectionTitle(sectionTitle);
 
-        // Add sections to the PDF
-        sections.forEach(section => {
-            const lines = section.split('\n');
-            addSectionTitle(lines[0]); // First line as section title
-            lines.slice(1).forEach(line => {
-                addText(line);
-                y -= lineHeight;
-                if (y < 4 * lineHeight) {
-                    page = pdfDoc.addPage();
-                    y = height - 4 * lineHeight;
+            contentItems.forEach(item => {
+                if (item.tagName === 'P') {
+                    addText(item.innerText);
+                } else if (item.tagName === 'UL') {
+                    item.querySelectorAll('li').forEach(li => {
+                        addText(`• ${li.innerText}`, { x: 70 });
+                    });
                 }
             });
-            y -= sectionGap; // Add extra space between sections
+
+            y -= sectionGap;
+        }
+
+        // Process all sections
+        document.querySelectorAll('.cv-section').forEach(section => {
+            processSection(section);
+            if (y < 4 * lineHeight) {
+                page = pdfDoc.addPage();
+                y = height - 4 * lineHeight;
+            }
         });
 
         // Serialize the PDF to bytes
