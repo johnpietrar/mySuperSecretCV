@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to start the typing effect
     function startTypingEffect() {
         const sections = Array.from(document.querySelectorAll('.cv-section'));
+        sections.forEach(section => section.style.visibility = 'hidden');
         let index = 0;
 
         function typeNextSection() {
@@ -157,6 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const section = sections[index];
                 const content = section.innerHTML;
                 section.innerHTML = ''; // Clear the section content
+                section.style.visibility = 'visible';
                 typeWriter(section, content, 0, () => {
                     index++;
                     typeNextSection();
