@@ -17,11 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Hide loading screen after content is loaded
+    // Hide loading screen after 3 seconds
     const loadingScreen = document.getElementById('loading-screen');
     const loadingProgress = document.querySelector('.loading-progress');
     loadingProgress.addEventListener('animationend', () => {
-        loadingScreen.style.display = 'none';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 3000); // 3 seconds
     });
 
     // GSAP Animations
