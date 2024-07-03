@@ -167,15 +167,15 @@ ul li.active {
     }
 
     #ghost-red {
-        animation: moveGhost 6s linear infinite;
+        animation: moveGhost 7s linear infinite;
     }
 
     #ghost-blue {
-        animation: moveGhost 6s linear infinite 0.5s;
+        animation: moveGhost 7s linear infinite 1s;
     }
 
     #ghost-pink {
-        animation: moveGhost 6s linear infinite 1s;
+        animation: moveGhost 7s linear infinite 2s;
     }
 }
 
@@ -254,9 +254,4 @@ a:visited {
     0% { left: -60px; }
     90% { left: 100%; }
     100% { opacity: 0; }
-}
-
-::selection {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50"><circle cx="50" cy="50" r="50" fill="yellow"/><polygon points="50,50 100,0 100,100" fill="black"/></svg>') no-repeat;
-    color: #0f0;
 }
