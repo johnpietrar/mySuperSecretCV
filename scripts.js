@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingScreen = document.getElementById('loading-screen');
     setTimeout(() => {
         loadingScreen.style.display = 'none';
+        // Start typing effect after loading screen is hidden
+        startTypingEffect();
     }, 2000); // Adjust time based on your preference
 
     // GSAP Animations
@@ -144,4 +146,24 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     });
+
+    // Function to start the typing effect
+    function startTypingEffect() {
+        const sections = document.querySelectorAll('.cv-section');
+        sections.forEach(section => {
+            const content = section.innerHTML;
+            section.innerHTML = ''; // Clear the section content
+            typeWriter(section, content, 0);
+        });
+    }
+
+    // Function to type out text letter by letter
+    function typeWriter(element, text, index) {
+        if (index < text.length) {
+            element.innerHTML += text.charAt(index);
+            setTimeout(() => {
+                typeWriter(element, text, index + 1);
+            }, 50); // Adjust typing speed here
+        }
+    }
 });
