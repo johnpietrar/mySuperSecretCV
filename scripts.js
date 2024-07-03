@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.innerHTML += char;
                 setTimeout(() => {
                     typeWriter(element, text, index + 1, callback);
-                }, 5); // Adjust typing speed here
+                }, 1); // Adjust typing speed here
             }
         } else {
             callback();
