@@ -24,7 +24,9 @@ body {
 }
 
 header {
-    text-align: center;
+    display: flex;
+    justify-content: space-between; /* Align title to left and button to right */
+    align-items: center;
     margin-bottom: 20px;
     position: relative;
 }
@@ -37,7 +39,6 @@ header h1 {
 }
 
 header #download-pdf {
-    margin-top: 10px;
     padding: 10px 20px;
     font-size: 1em;
     color: #000;
@@ -148,12 +149,21 @@ ul li.active {
         width: 95%;
     }
 
+    header {
+        flex-direction: column; /* Stack title and button vertically on small screens */
+    }
+
     header h1 {
         font-size: 1.5em;
+        margin-bottom: 10px;
     }
 
     header p {
         font-size: 1em;
+    }
+
+    header #download-pdf {
+        margin-top: 10px;
     }
 }
 
