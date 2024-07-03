@@ -153,12 +153,14 @@ document.addEventListener('DOMContentLoaded', function() {
     downloadButton.addEventListener('mouseenter', () => {
         ghosts.forEach(ghost => {
             ghost.classList.add('scared');
+            ghost.style.animation = 'moveGhostScared 2s linear infinite';
         });
     });
 
     downloadButton.addEventListener('mouseleave', () => {
         ghosts.forEach(ghost => {
             ghost.classList.remove('scared');
+            ghost.style.animation = 'moveGhost 5s linear infinite';
         });
     });
 });
