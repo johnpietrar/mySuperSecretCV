@@ -164,14 +164,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const pupil1 = ghost.querySelectorAll('.pupil')[0];
             const pupil2 = ghost.querySelectorAll('.pupil')[1];
 
-            const pupilOffsetX = Math.cos(angle) * 1.2; // Adjusted for better centering
-            const pupilOffsetY = Math.sin(angle) * 1.2; // Adjusted for better centering
+            const pupilOffsetX = Math.cos(angle) * 1.5; // Adjusted for better centering
+            const pupilOffsetY = Math.sin(angle) * 1.5; // Adjusted for better centering
 
-            pupil1.setAttribute('cx', parseFloat(eye1.getAttribute('cx')) + pupilOffsetX);
-            pupil1.setAttribute('cy', parseFloat(eye1.getAttribute('cy')) + pupilOffsetY);
+            const eyeRadius = parseFloat(eye1.getAttribute('r'));
+            const maxOffset = eyeRadius * 0.6; // Keep the pupil within the eye
 
-            pupil2.setAttribute('cx', parseFloat(eye2.getAttribute('cx')) + pupilOffsetX);
-            pupil2.setAttribute('cy', parseFloat(eye2.getAttribute('cy')) + pupilOffsetY);
+            // Constrain the pupil within the eye
+            const clampedOffsetX = Math.max(-maxOffset, Math.min(maxOffset, pupilOffsetX));
+            const clampedOffsetY = Math.max(-maxOffset, Math.min(maxOffset, pupilOffsetY));
+
+            pupil1.setAttribute('cx', parseFloat(eye1.getAttribute('cx')) + clampedOffsetX);
+            pupil1.setAttribute('cy', parseFloat(eye1.getAttribute('cy')) + clampedOffsetY);
+
+            pupil2.setAttribute('cx', parseFloat(eye2.getAttribute('cx')) + clampedOffsetX);
+            pupil2.setAttribute('cy', parseFloat(eye2.getAttribute('cy')) + clampedOffsetY);
         });
     });
 
