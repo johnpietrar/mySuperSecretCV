@@ -24,9 +24,7 @@ body {
 }
 
 header {
-    display: flex;
-    justify-content: space-between; /* Align title to left and button to right */
-    align-items: center;
+    text-align: center;
     margin-bottom: 20px;
     position: relative;
 }
@@ -36,6 +34,7 @@ header h1 {
     font-size: 2.5em;
     color: #0f0;
     text-shadow: 2px 2px 0 #000, 4px 4px 0 #0f0;
+    display: inline-block;
 }
 
 header #download-pdf {
@@ -47,8 +46,10 @@ header #download-pdf {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s, color 0.3s;
-    position: relative;
-    z-index: 10; /* Ensure button stays on top */
+    position: absolute;
+    right: 20px; /* Adjust this value based on your layout */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 header #download-pdf:hover {
@@ -149,16 +150,14 @@ ul li.active {
         width: 95%;
     }
 
-    header {
-        flex-direction: column; /* Stack title and button vertically on small screens */
-    }
-
     header h1 {
         font-size: 1.5em;
         margin-bottom: 10px;
     }
 
     header #download-pdf {
+        position: static;
+        transform: none;
         margin-top: 10px;
     }
 
