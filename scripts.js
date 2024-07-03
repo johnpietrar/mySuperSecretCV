@@ -145,4 +145,33 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     });
+
+    // Ghost eyes follow cursor
+    const ghosts = document.querySelectorAll('.ghost');
+    document.addEventListener('mousemove', (event) => {
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+
+        ghosts.forEach(ghost => {
+            const rect = ghost.getBoundingClientRect();
+            const ghostX = rect.left + rect.width / 2;
+            const ghostY = rect.top + rect.height / 2;
+
+            const angle = Math.atan2(mouseY - ghostY, mouseX - ghostX);
+
+            const eye1 = ghost.querySelectorAll('.eye')[0];
+            const eye2 = ghost.querySelectorAll('.eye')[1];
+            const pupil1 = ghost.querySelectorAll('.pupil')[0];
+            const pupil2 = ghost.querySelectorAll('.pupil')[1];
+
+            const pupilOffsetX = Math.cos(angle) * 3; // Adjust the number for pupil movement
+            const pupilOffsetY = Math.sin(angle) * 3; // Adjust the number for pupil movement
+
+            pupil1.setAttribute('cx', parseFloat(eye1.getAttribute('cx')) + pupilOffsetX);
+            pupil1.setAttribute('cy', parseFloat(eye1.getAttribute('cy')) + pupilOffsetY);
+
+            pupil2.setAttribute('cx', parseFloat(eye2.getAttribute('cx')) + pupilOffsetX);
+            pupil2.setAttribute('cy', parseFloat(eye2.getAttribute('cy')) + pupilOffsetY);
+        });
+    });
 });
