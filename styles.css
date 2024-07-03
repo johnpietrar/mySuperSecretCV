@@ -167,15 +167,15 @@ ul li.active {
     }
 
     #ghost-red {
-        animation: moveGhost 5s linear infinite;
+        animation: moveGhost 6s linear infinite;
     }
 
     #ghost-blue {
-        animation: moveGhost 5s linear infinite 0.3s;
+        animation: moveGhost 6s linear infinite 0.5s;
     }
 
     #ghost-pink {
-        animation: moveGhost 5s linear infinite 0.6s;
+        animation: moveGhost 6s linear infinite 1s;
     }
 }
 
@@ -254,4 +254,9 @@ a:visited {
     0% { left: -60px; }
     90% { left: 100%; }
     100% { opacity: 0; }
+}
+
+::selection {
+    background: url('path/to/pacman.png') no-repeat;
+    color: #0f0;
 }
