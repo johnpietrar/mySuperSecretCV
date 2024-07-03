@@ -157,12 +157,13 @@ ul li.active {
 
 a {
     color: #0f0;
-    text-decoration: none;
+    text-decoration: underline;
+    transition: color 0.3s, text-shadow 0.3s;
 }
 
 a:hover {
     color: #fff;
-    text-decoration: underline;
+    text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
 }
 
 a:visited {
