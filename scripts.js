@@ -21,8 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingScreen = document.getElementById('loading-screen');
     setTimeout(() => {
         loadingScreen.style.display = 'none';
-        // Start typing effect after loading screen is hidden
-        startTypingEffect();
     }, 2000); // Adjust time based on your preference
 
     // GSAP Animations
@@ -146,32 +144,4 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     });
-
-    // Function to start the typing effect
-    function startTypingEffect() {
-        const sections = Array.from(document.querySelectorAll('.cv-section'));
-        sections.forEach(section => section.style.visibility = 'hidden');
-        let index = 0;
-
-        function typeNextSection() {
-            if (index < sections.length) {
-                const section = sections[index];
-                section.style.visibility = 'visible';
-                const typewriter = new Typewriter(section.querySelector('.typewriter'), {
-                    loop: false,
-                    delay: 1
-                });
-                typewriter
-                    .typeString(section.querySelector('.typewriter').innerHTML)
-                    .callFunction(() => {
-                        section.querySelector('.typewriter').innerHTML = '';
-                    })
-                    .start();
-                index++;
-                setTimeout(typeNextSection, section.querySelector('.typewriter').innerHTML.length * 1);
-            }
-        }
-
-        typeNextSection();
-    }
 });
