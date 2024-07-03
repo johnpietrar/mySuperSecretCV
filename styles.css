@@ -48,7 +48,7 @@ header #download-pdf {
     transition: background 0.3s, color 0.3s;
     position: absolute;
     right: 20px; /* Adjust this value based on your layout */
-    top: 50%;
+    top: 60%; /* Lowered position */
     transform: translateY(-50%);
 }
 
