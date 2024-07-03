@@ -174,4 +174,12 @@ document.addEventListener('DOMContentLoaded', function() {
             pupil2.setAttribute('cy', parseFloat(eye2.getAttribute('cy')) + pupilOffsetY);
         });
     });
+
+    // Music play button functionality
+    const musicButton = document.getElementById('play-music');
+    const backgroundMusic = document.getElementById('background-music');
+
+    musicButton.addEventListener('click', () => {
+        backgroundMusic.play();
+    });
 });
