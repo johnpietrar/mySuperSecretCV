@@ -145,29 +145,4 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     });
-
-    // Ghost scare effect on hover
-    const downloadButton = document.getElementById('download-pdf');
-    const ghosts = document.querySelectorAll('.ghost');
-    let isHovering = false;
-
-    downloadButton.addEventListener('mouseenter', () => {
-        isHovering = true;
-        ghosts.forEach(ghost => {
-            ghost.classList.add('scared');
-            ghost.style.animation = 'moveGhostScared 2s linear infinite';
-        });
-    });
-
-    downloadButton.addEventListener('mouseleave', () => {
-        isHovering = false;
-        setTimeout(() => {
-            if (!isHovering) {
-                ghosts.forEach(ghost => {
-                    ghost.classList.remove('scared');
-                    ghost.style.animation = 'moveGhost 5s linear infinite';
-                });
-            }
-        }, 0);
-    });
 });
