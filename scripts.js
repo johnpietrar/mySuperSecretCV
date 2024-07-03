@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadingProgress.addEventListener('animationend', () => {
         setTimeout(() => {
             loadingScreen.style.display = 'none';
-        }, 3000); // 3 seconds
+        }, 2000); // 2 seconds
     });
 
     // GSAP Animations
