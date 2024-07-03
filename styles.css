@@ -145,60 +145,6 @@ ul li.active {
     color: #111;
 }
 
-a {
-    color: #0f0;
-    text-decoration: underline;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-a:hover {
-    color: #fff;
-    text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
-}
-
-a:visited {
-    color: #0f0;
-}
-
-#loading-screen {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.loading-bar {
-    width: 80%;
-    height: 30px;
-    background: #333;
-    border: 2px solid #0f0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-
-.loading-progress {
-    width: 0;
-    height: 100%;
-    background: #0f0;
-    animation: loadProgress 2s linear forwards;
-}
-
-.loading-text {
-    color: #0f0;
-    font-size: 1.2em;
-}
-
-@keyframes loadProgress {
-    0% { width: 0; }
-    100% { width: 100%; }
-}
-
 @media (max-width: 600px) {
     .container {
         width: 95%;
@@ -233,6 +179,73 @@ a:visited {
     }
 }
 
+a {
+    color: #0f0;
+    text-decoration: underline;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+}
+
+a:visited {
+    color: #0f0;
+}
+
+#loading-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #0f0;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-bar {
+    width: 80%;
+    height: 30px;
+    background: #333;
+    border: 2px solid #0f0;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.loading-progress {
+    width: 0;
+    height: 100%;
+    background: #0f0;
+    animation: load 2s linear forwards;
+}
+
+.loading-text {
+    color: #0f0;
+    font-size: 1em;
+    text-align: center;
+}
+
+@keyframes load {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
 .animation-container {
     position: relative;
     width: 100%;
@@ -247,6 +260,23 @@ a:visited {
     width: 50px;
     height: 50px;
     z-index: 5; /* Ensure ghosts go behind the button */
+}
+
+.ghost .eye {
+    fill: #FFF;
+}
+
+.ghost .pupil {
+    fill: #0000FF;
+}
+
+.ghost.scared {
+    fill: #0000FF !important;
+}
+
+.ghost.scared .eye,
+.ghost.scared .pupil {
+    fill: #FFF !important;
 }
 
 #ghost-red {
