@@ -164,8 +164,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const pupil1 = ghost.querySelectorAll('.pupil')[0];
             const pupil2 = ghost.querySelectorAll('.pupil')[1];
 
-            const pupilOffsetX = Math.cos(angle) * 1.5; // Adjust the number for pupil movement
-            const pupilOffsetY = Math.sin(angle) * 1.5; // Adjust the number for pupil movement
+            const pupilOffsetX = Math.cos(angle) * 1.2; // Adjusted for better centering
+            const pupilOffsetY = Math.sin(angle) * 1.2; // Adjusted for better centering
 
             pupil1.setAttribute('cx', parseFloat(eye1.getAttribute('cx')) + pupilOffsetX);
             pupil1.setAttribute('cy', parseFloat(eye1.getAttribute('cy')) + pupilOffsetY);
