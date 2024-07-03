@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load the custom font
     async function loadCustomFont() {
-        const url = 'path/to/DejaVuSans.ttf'; // Update the path to your font file
+        const url = 'DejaVuSans.ttf'; // Ensure this file is correctly placed in the root directory or update the path accordingly
         const fontBytes = await fetch(url).then(res => res.arrayBuffer());
         return fontBytes;
     }
@@ -67,10 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // PDF Download functionality using pdf-lib
     document.getElementById('download-pdf').addEventListener('click', async function () {
         const { PDFDocument, rgb } = PDFLib;
+        const fontkit = window.fontkit;
 
         // Create a new PDF document
         const pdfDoc = await PDFDocument.create();
-        pdfDoc.registerFontkit(window.fontkit);
+        pdfDoc.registerFontkit(fontkit);
 
         const customFontBytes = await loadCustomFont();
         const customFont = await pdfDoc.embedFont(customFontBytes);
