@@ -170,10 +170,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to type out text letter by letter
     function typeWriter(element, text, index, callback) {
         if (index < text.length) {
-            element.innerHTML += text.charAt(index);
-            setTimeout(() => {
-                typeWriter(element, text, index + 1, callback);
-            }, 10); // Adjust typing speed here
+            const char = text.charAt(index);
+            if (char === '<') {
+                const endTagIndex = text.indexOf('>', index);
+                if (endTagIndex !== -1) {
+                    const tag = text.substring(index, endTagIndex + 1);
+                    element.innerHTML += tag;
+                    typeWriter(element, text, endTagIndex + 1, callback);
+                }
+            } else {
+                element.innerHTML += char;
+                setTimeout(() => {
+                    typeWriter(element, text, index + 1, callback);
+                }, 10); // Adjust typing speed here
+            }
         } else {
             callback();
         }
