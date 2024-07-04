@@ -299,6 +299,9 @@ a:visited {
     right: 20px;
     width: 64px;
     height: 64px;
+    background: #000;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 #qbert {
