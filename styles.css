@@ -57,6 +57,20 @@ header #download-pdf:hover {
     color: #0f0;
 }
 
+.qbert-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#qbert {
+    animation: jump 1s infinite;
+}
+
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
 nav {
     background: #111;
     color: #0f0;
