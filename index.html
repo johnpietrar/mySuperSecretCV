@@ -143,23 +143,28 @@
         <audio id="background-music" src="arcade.mp3" loop></audio>
     <div class="gamepad-container">
         <svg id="gamepad" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128px" height="128px">
-            <!-- Detailed 80s pixelated gamepad SVG -->
+            <!-- Gamepad body -->
             <rect x="8" y="32" width="112" height="64" fill="#333" stroke="#FFF" stroke-width="4"/>
             <!-- D-pad -->
             <rect x="24" y="56" width="16" height="16" fill="#FFF"/>
             <rect x="28" y="52" width="8" height="24" fill="#333"/>
             <rect x="20" y="60" width="24" height="8" fill="#333"/>
-            <!-- Buttons -->
-            <circle cx="80" cy="56" r="6" fill="#FFF"/>
-            <circle cx="96" cy="56" r="6" fill="#FFF"/>
-            <circle cx="80" cy="72" r="6" fill="#FFF"/>
-            <circle cx="96" cy="72" r="6" fill="#FFF"/>
+            <!-- A, B, X, Y buttons -->
+            <circle cx="88" cy="52" r="6" fill="#FF0000"/> <!-- A -->
+            <circle cx="104" cy="52" r="6" fill="#00FF00"/> <!-- B -->
+            <circle cx="88" cy="68" r="6" fill="#0000FF"/> <!-- X -->
+            <circle cx="104" cy="68" r="6" fill="#FFFF00"/> <!-- Y -->
             <!-- Start and Select -->
-            <rect x="54" y="60" width="6" height="12" fill="#FFF"/>
-            <rect x="68" y="60" width="6" height="12" fill="#FFF"/>
+            <rect x="58" y="64" width="6" height="12" fill="#FFF"/>
+            <rect x="70" y="64" width="6" height="12" fill="#FFF"/>
             <!-- Decorations -->
             <rect x="44" y="40" width="40" height="8" fill="#FFF"/>
             <rect x="44" y="88" width="40" height="8" fill="#FFF"/>
+            <!-- Additional buttons -->
+            <circle cx="40" cy="48" r="3" fill="#FF00FF"/>
+            <circle cx="40" cy="80" r="3" fill="#00FFFF"/>
+            <circle cx="88" cy="88" r="3" fill="#FFAA00"/>
+            <circle cx="104" cy="88" r="3" fill="#AA00FF"/>
         </svg>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
