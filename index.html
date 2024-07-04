@@ -141,24 +141,22 @@
             </section>
         </main>
         <audio id="background-music" src="arcade.mp3" loop></audio>
-    </div>
     <div class="qbert-container">
         <svg id="qbert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64px" height="64px">
             <!-- Q*bert's body -->
-            <circle cx="32" cy="32" r="16" fill="#FFA500"/>
-            <!-- Q*bert's eyes -->
-            <circle cx="26" cy="26" r="3" fill="#FFF"/>
-            <circle cx="38" cy="26" r="3" fill="#FFF"/>
-            <!-- Q*bert's pupils -->
-            <circle cx="26" cy="26" r="1.5" fill="#000"/>
-            <circle cx="38" cy="26" r="1.5" fill="#000"/>
+            <ellipse cx="32" cy="40" rx="16" ry="20" fill="#FFA500"/>
+            <!-- Q*bert's eye -->
+            <circle cx="40" cy="25" r="4" fill="#FFF"/>
+            <!-- Q*bert's pupil -->
+            <circle cx="40" cy="25" r="2" fill="#000"/>
             <!-- Q*bert's trunk -->
-            <path d="M32,32 Q42,38 32,44 Q30,42 32,40 Q34,38 32,36" fill="#FFA500"/>
+            <path d="M48,40 Q56,36 48,32 Q50,38 48,44" fill="#FFA500"/>
             <!-- Q*bert's legs -->
-            <line x1="28" y1="48" x2="28" y2="56" stroke="#FFA500" stroke-width="4"/>
-            <line x1="36" y1="48" x2="36" y2="56" stroke="#FFA500" stroke-width="4"/>
+            <line x1="28" y1="55" x2="28" y2="64" stroke="#FFA500" stroke-width="4"/>
+            <line x1="36" y1="55" x2="36" y2="64" stroke="#FFA500" stroke-width="4"/>
         </svg>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollReveal/4.0.9/scrollreveal.min.js"></script>
