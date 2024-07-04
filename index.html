@@ -157,12 +157,18 @@
             <circle cx="90" cy="66" r="6" fill="#0000FF"></circle> <!-- Blue -->
             <circle cx="106" cy="66" r="6" fill="#FFFF00"></circle> <!-- Yellow -->
             <!-- Start and Select buttons -->
-            <rect x="52" y="58" width="10" height="4" fill="#FFF"></rect>
+            <rect id="start-button" x="52" y="58" width="10" height="4" fill="#FFF" style="cursor: pointer;"></rect>
             <rect x="66" y="58" width="10" height="4" fill="#FFF"></rect>
             <!-- Cable -->
             <path d="M64,28 Q64,18 54,18 T44,8" stroke="#FFF" stroke-width="2" fill="none"></path>
         </svg>
     </div>
+    
+    <script>
+        document.getElementById('start-button').addEventListener('click', function() {
+            window.open('https://www.google.com/logos/2010/pacman10-i.html', '_blank');
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollReveal/4.0.9/scrollreveal.min.js"></script>
     <script src="scripts.js"></script>
