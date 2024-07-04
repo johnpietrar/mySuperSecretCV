@@ -144,21 +144,23 @@
     <div class="gamepad-container">
         <svg id="gamepad" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128px" height="128px">
             <!-- Gamepad body -->
-            <rect x="8" y="32" width="112" height="64" fill="#333" stroke="#FFF" stroke-width="4"/>
+            <rect x="8" y="28" width="112" height="60" fill="#333" stroke="#FFF" stroke-width="4"></rect>
             <!-- D-pad -->
-            <rect x="20" y="56" width="8" height="24" fill="#FFF"/>
-            <rect x="28" y="64" width="8" height="8" fill="#FFF"/>
-            <rect x="36" y="56" width="8" height="24" fill="#FFF"/>
-            <rect x="28" y="56" width="8" height="8" fill="#FFF"/>
-            <rect x="28" y="72" width="8" height="8" fill="#FFF"/>
+            <rect x="20" y="55" width="8" height="8" fill="#FFF"></rect>
+            <rect x="28" y="55" width="8" height="8" fill="#FFF"></rect>
+            <rect x="36" y="55" width="8" height="8" fill="#FFF"></rect>
+            <rect x="28" y="47" width="8" height="8" fill="#FFF"></rect>
+            <rect x="28" y="63" width="8" height="8" fill="#FFF"></rect>
             <!-- Four colored buttons -->
-            <circle cx="88" cy="60" r="6" fill="#FF0000"/> <!-- Red -->
-            <circle cx="104" cy="60" r="6" fill="#00FF00"/> <!-- Green -->
-            <circle cx="88" cy="76" r="6" fill="#0000FF"/> <!-- Blue -->
-            <circle cx="104" cy="76" r="6" fill="#FFFF00"/> <!-- Yellow -->
+            <circle cx="91" cy="50" r="6" fill="#FF0000"></circle> <!-- Red -->
+            <circle cx="106" cy="50" r="6" fill="#00FF00"></circle> <!-- Green -->
+            <circle cx="90" cy="66" r="6" fill="#0000FF"></circle> <!-- Blue -->
+            <circle cx="106" cy="66" r="6" fill="#FFFF00"></circle> <!-- Yellow -->
             <!-- Start and Select buttons -->
-            <rect x="53" y="62" width="12" height="6" fill="#FFF"/>
-            <rect x="65" y="62" width="12" height="6" fill="#FFF"/>
+            <rect x="52" y="58" width="10" height="4" fill="#FFF"></rect>
+            <rect x="66" y="58" width="10" height="4" fill="#FFF"></rect>
+            <!-- Cable -->
+            <path d="M64,28 Q64,18 54,18 T44,8" stroke="#FFF" stroke-width="2" fill="none"></path>
         </svg>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
