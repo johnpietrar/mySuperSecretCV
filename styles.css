@@ -293,7 +293,7 @@ a:visited {
     color: #0f0;
 }
 
-.qbert-container {
+.gamepad-container {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -301,7 +301,7 @@ a:visited {
     height: 64px;
 }
 
-#qbert {
+#gamepad {
     animation: jump 1s infinite;
 }
 
@@ -309,7 +309,6 @@ a:visited {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
-
 
 @keyframes moveGhost {
     0% { left: -60px; }
