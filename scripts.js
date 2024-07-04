@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Play background music on mouse move
         const backgroundMusic = document.getElementById('background-music');
         if (backgroundMusic.paused) {
-            backgroundMusic.volume = 0.35;
+            backgroundMusic.volume = 0.2;
             backgroundMusic.play();
         }
     });
