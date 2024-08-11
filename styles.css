@@ -21,6 +21,7 @@ body {
     margin-top: 30px;
     border: 3px solid #0f0;
     border-radius: 10px;
+    z-index: 10; /* Ensure it is above the loading screen */
 }
 
 header {
@@ -47,8 +48,8 @@ header #download-pdf {
     cursor: pointer;
     transition: background 0.3s, color 0.3s;
     position: absolute;
-    right: 20px; /* Adjust this value based on your layout */
-    top: 80%; /* Lowered by 10 pixels */
+    right: 20px;
+    top: 50%;
     transform: translateY(-50%);
 }
 
@@ -105,21 +106,6 @@ section h2 {
     padding-bottom: 5px;
 }
 
-.experience, .education, .skills, .certifications, .recommendations, .achievements, .languages {
-    margin-bottom: 15px;
-}
-
-.experience h3 {
-    margin: 0;
-    font-size: 1.2em;
-    color: #0f0;
-}
-
-.experience p, .education p, .recommendations p, .languages p {
-    margin: 5px 0;
-    color: #0f0;
-}
-
 ul {
     list-style: none;
     padding: 0;
@@ -137,12 +123,6 @@ ul li {
 
 ul li:hover {
     background: #333;
-}
-
-ul li.active {
-    background: #0f0;
-    border-left-color: #111;
-    color: #111;
 }
 
 @media (max-width: 600px) {
@@ -164,18 +144,6 @@ ul li.active {
     .ghost {
         width: 30px;
         height: 30px;
-    }
-
-    #ghost-red {
-        animation: moveGhost 5s linear infinite;
-    }
-
-    #ghost-blue {
-        animation: moveGhost 5s linear infinite 0.3s;
-    }
-
-    #ghost-pink {
-        animation: moveGhost 5s linear infinite 0.6s;
     }
 }
 
@@ -247,7 +215,7 @@ a:visited {
     top: 0;
     width: 50px;
     height: 50px;
-    z-index: 5; /* Ensure ghosts go behind the button */
+    z-index: 5;
 }
 
 .ghost .eye {
@@ -257,7 +225,7 @@ a:visited {
 .ghost .pupil {
     fill: #0000FF;
     transition: transform 0.1s;
-    r: 1.2; /* Increase the radius to make the pupils larger */
+    r: 1.2;
 }
 
 #ghost-red {
@@ -275,28 +243,28 @@ a:visited {
     animation: moveGhost 5s linear infinite 0.4s;
 }
 
-#play-music {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #000;
-    background: #0f0;
-    border: 3px solid #000;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
+.raccoon-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
 }
 
-#play-music:hover {
-    background: #111;
-    color: #0f0;
+.raccoon-container img {
+    width: 150px;
+    animation: dance 2s infinite;
+}
+
+@keyframes dance {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
 }
 
 .gamepad-container {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 160px;
     width: 128px;
     height: 128px;
 }
