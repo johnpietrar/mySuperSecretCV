@@ -108,7 +108,7 @@ const Experience = ({ onSectionView }) => {
         { text: 'Architected and developed the complete infrastructure and backend for LEGO Magazine from the ground up', highlight: true },
         { text: 'Implemented comprehensive testing suite including unit, integration, and E2E tests ensuring 95%+ code coverage', highlight: true },
         { text: 'Created custom admin tool for magazine content management, streamlining editorial workflows', highlight: true },
-        { text: 'Built automated data pipeline to Databricks for analytics and business intelligence', highlight: true },
+        { text: 'Built and configured entire AWS infrastructure using CDK, architecting scalable cloud solutions from scratch', highlight: true },
         { text: 'Designed and implemented automated GDPR compliance system for data privacy requirements', highlight: true },
         { text: 'Leading technical decisions, mentoring team members, and establishing engineering best practices', highlight: false }
       ]

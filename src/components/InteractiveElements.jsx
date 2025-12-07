@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import pedroGif from '/public/pedro.gif';
+import pedroGif from '/pedro.gif';
 
 const LegoModal = ({ isOpen, onClose, onUnlock }) => {
   if (!isOpen) return null;
@@ -171,7 +171,7 @@ const Pedro = ({ onClick, disabled }) => {
         href="https://www.youtube.com/shorts/jw3jjN8kCyo"
         target="_blank"
         rel="noopener noreferrer"
-        onClick={disabled ? (e) => e.preventDefault() : onClick}
+        onClick={onClick}
         whileHover={disabled ? {} : { scale: 1.1, rotate: 5 }}
         whileTap={disabled ? {} : { scale: 0.9 }}
         animate={{ y: [0, -10, 0] }}
@@ -230,9 +230,8 @@ const InteractiveElements = ({ onGamepadClick, onLegoClick, onPedroClick }) => {
     if (!clicked.pedro) {
       setClicked(prev => ({ ...prev, pedro: true }));
       onPedroClick(e);
-    } else {
-      e.preventDefault();
     }
+    // Always allow the link to open, just don't give points twice
   };
 
   return (

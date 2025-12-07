@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import arcadeMusic from '/public/arcade.mp3?url';
+import arcadeMusic from '/arcade.mp3';
 
 const BackgroundMusic = () => {
   const audioRef = useRef(null);
