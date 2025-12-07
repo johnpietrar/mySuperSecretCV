@@ -162,3 +162,6 @@ Personal CV - All rights reserved © 2025 Ionuț Pietrar
 This CV is designed to be an interactive experience. Explore, click around, and try to find all the easter eggs!
 
 **Hint**: The Konami code is hidden in the Achievements section... 👀
+
+---
+Live at: https://johnpietrar.github.io/mySuperSecretCV/
