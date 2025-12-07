@@ -8,6 +8,47 @@ body {
     background: #000;
     color: #0f0;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* CRT Screen Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+/* Scan lines effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9997;
+    animation: scanlines 8s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(10px); }
 }
 
 .container {
@@ -29,12 +70,40 @@ header {
     position: relative;
 }
 
+/* Game Stats Display */
+.game-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #000;
+    border: 2px solid #0f0;
+    border-radius: 5px;
+    font-size: 0.7em;
+}
+
+.game-stats span {
+    color: #0f0;
+    text-shadow: 0 0 5px #0f0;
+}
+
 header h1 {
     margin: 0;
     font-size: 2.5em;
     color: #0f0;
-    text-shadow: 2px 2px 0 #000, 4px 4px 0 #0f0;
+    text-shadow: 2px 2px 0 #000, 4px 4px 0 #0f0, 0 0 10px #0f0;
     display: inline-block;
+    animation: glitch 5s infinite;
+}
+
+@keyframes glitch {
+    0%, 98%, 100% {
+        text-shadow: 2px 2px 0 #000, 4px 4px 0 #0f0, 0 0 10px #0f0;
+    }
+    99% {
+        text-shadow: 2px 2px 0 #f00, 4px 4px 0 #0ff, 0 0 10px #0f0;
+        transform: translate(-2px, 1px);
+    }
 }
 
 header #download-pdf {
@@ -296,13 +365,24 @@ a:visited {
 .gamepad-container {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     width: 128px;
     height: 128px;
+    z-index: 99;
 }
 
 #gamepad {
     animation: jump 1s infinite;
+}
+
+#lego-button {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#lego-button:hover {
+    fill: #FFD700;
+    filter: drop-shadow(0 0 5px #FFFF00);
 }
 
 .raccoon-container {
@@ -332,4 +412,359 @@ a:visited {
     0% { left: -60px; }
     90% { left: 100%; }
     100% { opacity: 0; }
+}
+
+/* New styles for enhanced CV */
+
+/* Technical Lead Badge */
+.tech-lead-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: #000;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 0.7em;
+    font-weight: bold;
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
+    animation: pulse 2s infinite;
+    letter-spacing: 2px;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.5);
+    }
+}
+
+/* Role header for current position */
+.role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Current role highlighting */
+.current-role {
+    border: 3px solid #FFD700;
+    padding: 20px;
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.current-role::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Client highlight */
+.client-highlight {
+    color: #FFD700;
+    font-weight: bold;
+    margin-top: 15px;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Role description */
+.role-description {
+    color: #FF69B4;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* Achievement highlights */
+.achievement-highlight {
+    border-left-color: #FFD700;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
+    position: relative;
+}
+
+.achievement-highlight::before {
+    content: '⭐';
+    position: absolute;
+    left: -25px;
+    animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Experience boxes */
+.experience {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #0a0a0a;
+    border: 2px solid #0f0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.experience:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
+    border-color: #0ff;
+}
+
+/* Achievement Popup */
+.achievement-popup {
+    position: fixed;
+    top: 100px;
+    right: -400px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 3px solid #000;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    z-index: 10000;
+    transition: right 0.3s ease-in-out;
+    font-size: 0.7em;
+}
+
+.achievement-popup.show {
+    right: 20px;
+}
+
+.achievement-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.achievement-icon {
+    font-size: 2em;
+    animation: bounce 0.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.achievement-text {
+    font-weight: bold;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Rainbow animation for Konami code */
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Ghost cursor pointer */
+.ghost {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.ghost:hover {
+    transform: scale(1.2);
+}
+
+/* Pedro interaction */
+.raccoon-container img {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.raccoon-container img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .role-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tech-lead-badge {
+        font-size: 0.6em;
+        padding: 4px 10px;
+    }
+
+    .achievement-popup {
+        right: -300px;
+        font-size: 0.6em;
+        padding: 15px 20px;
+    }
+
+    .achievement-popup.show {
+        right: 10px;
+    }
+
+    .game-stats {
+        flex-direction: column;
+        gap: 5px;
+        font-size: 0.6em;
+    }
+}
+
+/* LEGO Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #111, #1a1a1a);
+    margin: 10% auto;
+    padding: 40px;
+    border: 5px solid #FFD700;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    animation: slideDown 0.5s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    color: #FFD700;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.modal-content p {
+    color: #0f0;
+    font-size: 1em;
+    line-height: 1.8;
+}
+
+.close-modal {
+    color: #0f0;
+    float: right;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #FFD700;
+    text-shadow: 0 0 10px #FFD700;
+}
+
+/* LEGO Bricks */
+.lego-bricks {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.brick {
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+    position: relative;
+    animation: buildBrick 1s ease-in-out infinite alternate;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.brick::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    width: 12px;
+    height: 12px;
+    background: inherit;
+    border-radius: 50%;
+    box-shadow: 28px 0 0 inherit;
+}
+
+.brick-red {
+    background: #FF0000;
+    animation-delay: 0s;
+}
+
+.brick-blue {
+    background: #0000FF;
+    animation-delay: 0.2s;
+}
+
+.brick-yellow {
+    background: #FFFF00;
+    animation-delay: 0.4s;
+}
+
+.brick-green {
+    background: #00FF00;
+    animation-delay: 0.6s;
+}
+
+@keyframes buildBrick {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+/* Secret hint styling */
+.secret-hint {
+    color: #FF69B4;
+    font-size: 0.8em;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 5px #FF69B4, 0 0 10px #FF69B4;
+    }
+    50% {
+        text-shadow: 0 0 10px #FF69B4, 0 0 20px #FF69B4, 0 0 30px #FF69B4;
+    }
 }

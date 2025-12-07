@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionuț's Digital Journey</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <meta name="description" content="Senior Software Engineer CV - Ionuț Pietrar">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-text">Loading...</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+    <div class="container">
+        <header class="animate__animated animate__bounceInDown">
+            <div class="game-stats">
+                <span id="level-indicator">LEVEL: 1</span>
+                <span id="score-indicator">SCORE: 0</span>
+                <span id="lives-indicator">❤️ ❤️ ❤️</span>
+            </div>
+            <h1>Ionuț's Digital Journey</h1>
+            <div class="animation-container">
+                <svg class="ghost" id="ghost-red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
+                    <path fill="#FF0000" d="M 12 1 C 7.03 1 3 5.03 3 10 L 3 22 L 7 18 L 9 20 L 11 18 L 13 20 L 15 18 L 17 20 L 21 18 L 21 10 C 21 5.03 16.97 1 12 1 z M 8.5 5 C 9.328 5 10 5.672 10 6.5 C 10 7.328 9.328 8 8.5 8 C 7.672 8 7 7.328 7 6.5 C 7 5.672 7.672 5 8.5 5 z M 15.5 5 C 16.328 5 17 5.672 17 6.5 C 17 7.328 16.328 8 15.5 8 C 14.672 8 14 7.328 14 6.5 C 14 5.672 14.672 5 15.5 5 z"/>
+                    <circle class="eye" cx="8.5" cy="6.5" r="2" fill="#FFF" />
+                    <circle class="eye" cx="15.5" cy="6.5" r="2" fill="#FFF" />
+                    <circle class="pupil" id="pupil1" cx="8.5" cy="6.5" r="1.5" fill="#0000FF" />
+                    <circle class="pupil" id="pupil2" cx="15.5" cy="6.5" r="1.5" fill="#0000FF" />
+                </svg>
+                <svg class="ghost" id="ghost-blue" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
+                    <path fill="#0000FF" d="M 12 1 C 7.03 1 3 5.03 3 10 L 3 22 L 7 18 L 9 20 L 11 18 L 13 20 L 15 18 L 17 20 L 21 18 L 21 10 C 21 5.03 16.97 1 12 1 z M 8.5 5 C 9.328 5 10 5.672 10 6.5 C 10 7.328 9.328 8 8.5 8 C 7.672 8 7 7.328 7 6.5 C 7 5.672 7.672 5 8.5 5 z M 15.5 5 C 16.328 5 17 5.672 17 6.5 C 17 7.328 16.328 8 15.5 8 C 14.672 8 14 7.328 14 6.5 C 14 5.672 14.672 5 15.5 5 z"/>
+                    <circle class="eye" cx="8.5" cy="6.5" r="2" fill="#FFF" />
+                    <circle class="eye" cx="15.5" cy="6.5" r="2" fill="#FFF" />
+                    <circle class="pupil" id="pupil3" cx="8.5" cy="6.5" r="1.5" fill="#0000FF" />
+                    <circle class="pupil" id="pupil4" cx="15.5" cy="6.5" r="1.5" fill="#0000FF" />
+                </svg>
+                <svg class="ghost" id="ghost-pink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
+                    <path fill="#FF69B4" d="M 12 1 C 7.03 1 3 5.03 3 10 L 3 22 L 7 18 L 9 20 L 11 18 L 13 20 L 15 18 L 17 20 L 21 18 L 21 10 C 21 5.03 16.97 1 12 1 z M 8.5 5 C 9.328 5 10 5.672 10 6.5 C 10 7.328 9.328 8 8.5 8 C 7.672 8 7 7.328 7 6.5 C 7 5.672 7.672 5 8.5 5 z M 15.5 5 C 16.328 5 17 5.672 17 6.5 C 17 7.328 16.328 8 15.5 8 C 14.672 8 14 7.328 14 6.5 C 14 5.672 14.672 5 15.5 5 z"/>
+                    <circle class="eye" cx="8.5" cy="6.5" r="2" fill="#FFF" />
+                    <circle class="eye" cx="15.5" cy="6.5" r="2" fill="#FFF" />
+                    <circle class="pupil" id="pupil5" cx="8.5" cy="6.5" r="1.5" fill="#0000FF" />
+                    <circle class="pupil" id="pupil6" cx="15.5" cy="6.5" r="1.5" fill="#0000FF" />
+                </svg>
+            </div>
+            <button id="download-pdf">Download as PDF</button>
+        </header>
+        <nav class="animate__animated animate__fadeIn">
+            <ul>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#recommendations">Recommendations</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+            </ul>
+        </nav>
+        <main id="cv-content">
+            <section id="summary" class="animate__animated animate__fadeInUp cv-section">
+                <h2>Professional Summary</h2>
+                <p>Passionate and experienced Senior Software Engineer with over 8 years in the industry. Skilled in backend development, particularly with Node.js and AWS. Proven ability to lead projects, manage teams, and deliver high-quality software solutions on time. Known for strong problem-solving skills, innovation, and the ability to work independently and collaboratively within a team.</p>
+                <p>Contact me at: <a href="mailto:johnpietrar@gmail.com">johnpietrar@gmail.com</a></p>
+            </section>
+            <section id="experience" class="animate__animated animate__fadeInUp cv-section">
+                <h2>Professional Experience</h2>
+                <div class="experience current-role">
+                    <div class="role-header">
+                        <h3>Mindera (Node.js/AWS/NoSQL)</h3>
+                        <span class="tech-lead-badge">TECHNICAL LEAD</span>
+                    </div>
+                    <p>Technical Lead / Senior Software Engineer (Apr 2022 - Present)</p>
+                    <p class="client-highlight">Client: LEGO Group - UK</p>
+                    <ul>
+                        <li class="achievement-highlight">Architected and developed the complete infrastructure and backend for LEGO Magazine from the ground up</li>
+                        <li class="achievement-highlight">Implemented comprehensive testing suite including unit, integration, and E2E tests ensuring 95%+ code coverage</li>
+                        <li class="achievement-highlight">Created custom admin tool for magazine content management, streamlining editorial workflows</li>
+                        <li class="achievement-highlight">Built automated data pipeline to Databricks for analytics and business intelligence</li>
+                        <li class="achievement-highlight">Designed and implemented automated GDPR compliance system for data privacy requirements</li>
+                        <li>Leading technical decisions and mentoring team members on best practices</li>
+                        <li>Conducting code reviews and facilitating the interview process for new hires</li>
+                    </ul>
+                    <p class="client-highlight">Previous Client: Dunelm - UK's largest homewares retailer</p>
+                    <ul>
+                        <li>Built and maintained scalable e-commerce solutions using AWS and Node.js</li>
+                        <li>Optimized backend services handling millions of customer transactions</li>
+                    </ul>
+                </div>
+                <div class="experience">
+                    <h3>3Pillar Global (Node.js/AWS/NoSQL)</h3>
+                    <p>Software Engineer (Aug 2019 - Apr 2022)</p>
+                    <p class="client-highlight">Clients: Fortune 500 Companies</p>
+                    <ul>
+                        <li>Developed enterprise-grade web applications for Fortune 500 clients using AWS and Node.js</li>
+                        <li>Participated in the full software development lifecycle for high-stakes projects</li>
+                        <li>Implemented microservices architecture enhancing scalability for millions of users</li>
+                        <li>Delivered innovative solutions meeting strict enterprise security and compliance standards</li>
+                    </ul>
+                </div>
+                <div class="experience">
+                    <h3>Webamboos (Node.js/AWS/NoSQL)</h3>
+                    <p>Software Development Specialist (Aug 2018 - Aug 2019)</p>
+                    <p class="role-description">Jack-of-all-trades developer handling diverse project categories</p>
+                    <ul>
+                        <li>Tackled projects across every conceivable category - from e-commerce to IoT, fintech to content management</li>
+                        <li>Rapidly adapted to new technologies and domains, delivering solutions across varied tech stacks</li>
+                        <li>Specialized in developing server-side applications, APIs, and cloud integrations</li>
+                        <li>Integrated AWS services to improve application performance and scalability</li>
+                        <li>Optimized and enhanced existing codebases across multiple client projects</li>
+                    </ul>
+                </div>
+                <div class="experience">
+                    <h3>Flex (C#/SQL)</h3>
+                    <p>Software Development Engineer (May 2016 - Aug 2018)</p>
+                    <ul>
+                        <li>Collaborated directly with production line engineers to improve manufacturing systems</li>
+                        <li>Designed and developed software solutions optimizing factory floor operations</li>
+                        <li>Implemented real-time communication systems between production line equipment</li>
+                        <li>Enhanced system efficiency leading to measurable improvements in production output</li>
+                        <li>Bridged the gap between software and hardware, translating engineering needs into code</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="education" class="animate__animated animate__fadeInUp cv-section">
+                <h2>Education</h2>
+                <p>Politehnica University Timisoara - Bachelor's degree, Computer Science</p>
+            </section>
+            <section id="skills" class="animate__animated animate__fadeInUp cv-section">
+                <h2>Skills</h2>
+                <ul>
+                    <li>Programming Languages: Node.js, TypeScript, C#, Python</li>
+                    <li>Cloud Services: Amazon Web Services (AWS)</li>
+                    <li>Database Technologies: NoSQL, SQL</li>
+                    <li>Development Practices: Microservices, Data Analysis, Optimization</li>
+                    <li>Professional Skills: Communication, Team Leadership, Problem-Solving</li>
+                </ul>
+            </section>
+            <section id="certifications" class="animate__animated animate__fadeInUp cv-section">
+                <h2>Certifications</h2>
+                <ul>
+                    <li>Passed LinkedIn Skill Assessments for Node.js, AWS</li>
+                </ul>
+            </section>
+            <section id="recommendations" class="animate__animated animate__fadeInUp cv-section">
+                <h2>Recommendations</h2>
+                <p><a href="https://www.linkedin.com/in/danieldughila">Daniel Dughila</a> - Engineering Manager</p>
+                <p>Ionuț is a passionate software engineer with a valuable quality, you can depend on him! We worked together on a fast-paced project, building a video portal with a tight deadline. Ionuț stepped up; I relied on him for complex tasks, working independently, asking the right questions, getting the job done. He was always willing to help his colleagues. I am lucky to have worked together!</p>
+            </section>
+            <section id="publications" class="animate__animated animate__fadeInUp cv-section">
+                <h2>Publications</h2>
+                <p><a href="https://medium.com/@ionutpietrar/architecting-robust-software-embracing-modular-design-6980ff3c3933">Architecting Robust Software: Embracing Modular Design</a></p>
+                <p><a href="https://medium.com/@ionutpietrar/crafting-effective-documentation-for-typescript-microservices-projects-94cec40e740b">Crafting Effective Documentation for TypeScript Microservices Projects</a></p>
+            </section>
+            <section id="achievements" class="animate__animated animate__fadeInUp cv-section">
+                <h2>Achievements</h2>
+                <ul>
+                    <li>Innovation Award for contributions to project efficiency and new feature development at 3Pillar Global.</li>
+                    <li>Successfully led the development and deployment of multiple high-impact projects.</li>
+                    <li class="secret-hint">🎮 Retro Gaming Secret: Try the classic cheat code... ⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️BA</li>
+                </ul>
+            </section>
+        </main>
+        <audio id="background-music" src="arcade.mp3" loop></audio>
+    <div class="raccoon-container">
+         <!-- Pedro body -->
+        <a href="https://www.youtube.com/shorts/jw3jjN8kCyo" target="_blank">
+            <img src="pedro.gif" alt="Dancing Pedro the Raccoon">
+        </a>
+    </div>
+    <div class="gamepad-container">
+        <svg id="gamepad" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128px" height="128px">
+            <!-- Gamepad body -->
+            <rect x="8" y="28" width="112" height="60" fill="#333" stroke="#FFF" stroke-width="4"></rect>
+            <!-- D-pad -->
+            <rect x="20" y="55" width="8" height="8" fill="#FFF"></rect>
+            <rect x="28" y="55" width="8" height="8" fill="#FFF"></rect>
+            <rect x="36" y="55" width="8" height="8" fill="#FFF"></rect>
+            <rect x="28" y="47" width="8" height="8" fill="#FFF"></rect>
+            <rect x="28" y="63" width="8" height="8" fill="#FFF"></rect>
+            <!-- Four colored buttons -->
+            <circle cx="91" cy="50" r="6" fill="#FF0000"></circle> <!-- Red -->
+            <circle cx="106" cy="50" r="6" fill="#00FF00"></circle> <!-- Green -->
+            <circle cx="90" cy="66" r="6" fill="#0000FF"></circle> <!-- Blue -->
+            <circle id="lego-button" cx="106" cy="66" r="6" fill="#FFFF00" style="cursor: pointer;"></circle> <!-- Yellow - LEGO Easter Egg -->
+            <!-- Start and Select buttons -->
+            <rect id="start-button" x="52" y="58" width="10" height="4" fill="#FFF" style="cursor: pointer;"></rect>
+            <rect x="66" y="58" width="10" height="4" fill="#FFF"></rect>
+            <!-- Cable -->
+            <path d="M64,28 Q64,18 54,18 T44,8" stroke="#FFF" stroke-width="2" fill="none"></path>
+        </svg>
+    </div>
+
+    <!-- Hidden LEGO Easter Egg Modal -->
+    <div id="lego-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🧱 LEGO MASTER BUILDER UNLOCKED! 🧱</h2>
+            <p>You've discovered the secret LEGO Easter Egg!</p>
+            <div class="lego-bricks">
+                <div class="brick brick-red"></div>
+                <div class="brick brick-blue"></div>
+                <div class="brick brick-yellow"></div>
+                <div class="brick brick-green"></div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.8em;">Fun Fact: The LEGO Magazine infrastructure processes millions of requests monthly!</p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('start-button').addEventListener('click', function() {
+            window.open('https://www.google.com/logos/2010/pacman10-i.html', '_blank');
+        });
+
+        document.getElementById('start-button').addEventListener('mouseover', function() {
+            this.setAttribute('fill', '#FFD700');
+        });
+
+        document.getElementById('start-button').addEventListener('mouseout', function() {
+            this.setAttribute('fill', '#FFF');
+        });
+
+        // LEGO Button Easter Egg
+        document.getElementById('lego-button').addEventListener('click', function() {
+            document.getElementById('lego-modal').style.display = 'block';
+        });
+
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('lego-modal').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('lego-modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollReveal/4.0.9/scrollreveal.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

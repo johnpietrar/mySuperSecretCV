@@ -1,8 +1,76 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Game stats system
+    let score = 0;
+    let level = 1;
+    const scoreElement = document.getElementById('score-indicator');
+    const levelElement = document.getElementById('level-indicator');
+
+    function updateScore(points) {
+        score += points;
+        scoreElement.textContent = `SCORE: ${score}`;
+
+        // Level up every 1000 points
+        const newLevel = Math.floor(score / 1000) + 1;
+        if (newLevel > level) {
+            level = newLevel;
+            levelElement.textContent = `LEVEL: ${level}`;
+            showAchievement(`LEVEL UP! Now at Level ${level}!`);
+        }
+    }
+
+    // Achievement notification system
+    function showAchievement(message) {
+        const achievement = document.createElement('div');
+        achievement.className = 'achievement-popup';
+        achievement.innerHTML = `
+            <div class="achievement-content">
+                <span class="achievement-icon">🏆</span>
+                <span class="achievement-text">${message}</span>
+            </div>
+        `;
+        document.body.appendChild(achievement);
+
+        setTimeout(() => {
+            achievement.classList.add('show');
+        }, 100);
+
+        setTimeout(() => {
+            achievement.classList.remove('show');
+            setTimeout(() => achievement.remove(), 300);
+        }, 3000);
+    }
+
+    // Konami Code Easter Egg (↑ ↑ ↓ ↓ ← → ← → B A)
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', function(e) {
+        const key = e.key.toLowerCase();
+        if (key === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                activateKonamiCode();
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+
+    function activateKonamiCode() {
+        showAchievement('KONAMI CODE ACTIVATED! +10000 POINTS!');
+        updateScore(10000);
+        document.body.style.animation = 'rainbow 2s linear';
+        setTimeout(() => {
+            document.body.style.animation = '';
+        }, 2000);
+    }
+
     // Smooth scroll for navigation links
     document.querySelectorAll('nav ul li a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            updateScore(10);
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
@@ -14,7 +82,69 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', function () {
             document.querySelectorAll('ul li').forEach(li => li.classList.remove('active'));
             this.classList.add('active');
+            updateScore(5);
         });
+    });
+
+    // Ghost click counter
+    let ghostClicks = 0;
+    document.querySelectorAll('.ghost').forEach(ghost => {
+        ghost.addEventListener('click', function() {
+            ghostClicks++;
+            updateScore(50);
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 10);
+
+            if (ghostClicks === 10) {
+                showAchievement('Ghost Hunter! Clicked 10 ghosts!');
+            } else if (ghostClicks === 50) {
+                showAchievement('Pac-Master! 50 ghost clicks!');
+            }
+        });
+    });
+
+    // Pedro clicks
+    let pedroClicks = 0;
+    const raccoon = document.querySelector('.raccoon-container img');
+    if (raccoon) {
+        raccoon.addEventListener('click', function(e) {
+            e.preventDefault();
+            pedroClicks++;
+            updateScore(100);
+
+            if (pedroClicks === 1) {
+                showAchievement('You found Pedro! +100 points!');
+            } else if (pedroClicks === 5) {
+                showAchievement('Pedro\'s Best Friend!');
+            } else if (pedroClicks === 10) {
+                showAchievement('Pedro Dance Champion!');
+            }
+        });
+    }
+
+    // Section scroll achievements
+    let sectionsViewed = new Set();
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionId = entry.target.id;
+                if (!sectionsViewed.has(sectionId)) {
+                    sectionsViewed.add(sectionId);
+                    updateScore(25);
+
+                    if (sectionsViewed.size === 8) {
+                        showAchievement('CV Explorer! Viewed all sections! +500 bonus!');
+                        updateScore(500);
+                    }
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.cv-section').forEach(section => {
+        observer.observe(section);
     });
 
     // Hide loading screen after content is loaded
@@ -22,7 +152,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingProgress = document.querySelector('.loading-progress');
     loadingProgress.addEventListener('animationend', () => {
         loadingScreen.style.display = 'none';
+        setTimeout(() => {
+            showAchievement('Welcome, Player! Start exploring to earn points!');
+        }, 500);
     });
+
+    // LEGO Button achievement
+    const legoButton = document.getElementById('lego-button');
+    if (legoButton) {
+        legoButton.addEventListener('click', function() {
+            showAchievement('LEGO Master Builder discovered! +500 points!');
+            updateScore(500);
+        });
+    }
 
     // GSAP Animations
     gsap.from("header h1", { duration: 1, y: -50, opacity: 0 });
