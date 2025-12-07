@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import arcadeMusic from '/public/arcade.mp3?url';
 
 const BackgroundMusic = () => {
   const audioRef = useRef(null);
@@ -60,7 +61,7 @@ const BackgroundMusic = () => {
   return (
     <>
       <audio ref={audioRef} loop preload="auto">
-        <source src="/arcade.mp3" type="audio/mpeg" />
+        <source src={arcadeMusic} type="audio/mpeg" />
       </audio>
 
       <AnimatePresence>

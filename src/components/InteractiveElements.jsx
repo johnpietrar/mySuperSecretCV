@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import pedroGif from '/public/pedro.gif';
 
 const LegoModal = ({ isOpen, onClose, onUnlock }) => {
   if (!isOpen) return null;
@@ -156,7 +157,7 @@ const Gamepad = ({ onStartClick, onLegoClick }) => {
   );
 };
 
-const Pedro = ({ onClick }) => {
+const Pedro = ({ onClick, disabled }) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
@@ -168,16 +169,17 @@ const Pedro = ({ onClick }) => {
         href="https://www.youtube.com/shorts/jw3jjN8kCyo"
         target="_blank"
         rel="noopener noreferrer"
-        onClick={onClick}
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        whileTap={{ scale: 0.9 }}
+        onClick={disabled ? (e) => e.preventDefault() : onClick}
+        whileHover={disabled ? {} : { scale: 1.1, rotate: 5 }}
+        whileTap={disabled ? {} : { scale: 0.9 }}
         animate={{ y: [0, -10, 0] }}
         transition={{ y: { repeat: Infinity, duration: 2 } }}
+        style={{ opacity: disabled ? 0.5 : 1 }}
       >
         <img
-          src="/pedro.gif"
+          src={pedroGif}
           alt="Dancing Pedro the Raccoon"
-          className="w-32 md:w-40 cursor-pointer"
+          className={`w-32 md:w-40 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
           style={{ imageRendering: 'pixelated' }}
         />
       </motion.a>
@@ -187,22 +189,44 @@ const Pedro = ({ onClick }) => {
 
 const InteractiveElements = ({ onGamepadClick, onLegoClick, onPedroClick }) => {
   const [isLegoModalOpen, setIsLegoModalOpen] = useState(false);
+  const [clicked, setClicked] = useState({
+    gamepad: false,
+    lego: false,
+    pedro: false
+  });
+
+  const handleGamepadClick = () => {
+    if (!clicked.gamepad) {
+      setClicked(prev => ({ ...prev, gamepad: true }));
+      window.open('https://www.google.com/logos/2010/pacman10-i.html', '_blank');
+      onGamepadClick();
+    }
+  };
 
   const handleLegoClick = () => {
-    setIsLegoModalOpen(true);
-    onLegoClick();
+    if (!clicked.lego) {
+      setClicked(prev => ({ ...prev, lego: true }));
+      setIsLegoModalOpen(true);
+      onLegoClick();
+    }
+  };
+
+  const handlePedroClick = (e) => {
+    if (!clicked.pedro) {
+      setClicked(prev => ({ ...prev, pedro: true }));
+      onPedroClick(e);
+    } else {
+      e.preventDefault();
+    }
   };
 
   return (
     <>
       <Gamepad
-        onStartClick={() => {
-          window.open('https://www.google.com/logos/2010/pacman10-i.html', '_blank');
-          onGamepadClick();
-        }}
+        onStartClick={handleGamepadClick}
         onLegoClick={handleLegoClick}
       />
-      <Pedro onClick={onPedroClick} />
+      <Pedro onClick={handlePedroClick} disabled={clicked.pedro} />
       <LegoModal
         isOpen={isLegoModalOpen}
         onClose={() => setIsLegoModalOpen(false)}

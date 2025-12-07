@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { generatePDF } from '../utils/pdfGenerator';
 
-const Ghost = ({ color, delay, onClick }) => {
+const Ghost = ({ color, delay, onClick, disabled }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -46,8 +46,8 @@ const Ghost = ({ color, delay, onClick }) => {
         repeat: Infinity,
         ease: 'linear'
       }}
-      onClick={onClick}
-      className="absolute top-0 cursor-pointer hover:scale-125 transition-transform"
+      onClick={disabled ? undefined : onClick}
+      className={`absolute top-0 ${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:scale-125'} transition-transform`}
       style={{ width: '40px', height: '40px' }}
     >
       <svg viewBox="0 0 24 24" className="w-full h-full">
@@ -75,6 +75,20 @@ const Ghost = ({ color, delay, onClick }) => {
 };
 
 const Header = ({ onGhostClick }) => {
+  const [clickedGhosts, setClickedGhosts] = useState({
+    red: false,
+    blue: false,
+    pink: false,
+    orange: false
+  });
+
+  const handleGhostClick = (color, points) => {
+    if (!clickedGhosts[color]) {
+      setClickedGhosts(prev => ({ ...prev, [color]: true }));
+      onGhostClick(points);
+    }
+  };
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -50 }}
@@ -92,10 +106,10 @@ const Header = ({ onGhostClick }) => {
       </motion.h1>
 
       <div className="relative h-12 overflow-hidden mb-6">
-        <Ghost color="red" delay={0} onClick={() => onGhostClick(50)} />
-        <Ghost color="blue" delay={0.3} onClick={() => onGhostClick(50)} />
-        <Ghost color="pink" delay={0.6} onClick={() => onGhostClick(50)} />
-        <Ghost color="orange" delay={0.9} onClick={() => onGhostClick(50)} />
+        <Ghost color="red" delay={0} onClick={() => handleGhostClick('red', 50)} disabled={clickedGhosts.red} />
+        <Ghost color="blue" delay={0.3} onClick={() => handleGhostClick('blue', 50)} disabled={clickedGhosts.blue} />
+        <Ghost color="pink" delay={0.6} onClick={() => handleGhostClick('pink', 50)} disabled={clickedGhosts.pink} />
+        <Ghost color="orange" delay={0.9} onClick={() => handleGhostClick('orange', 50)} disabled={clickedGhosts.orange} />
       </div>
 
       <motion.button
