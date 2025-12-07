@@ -158,6 +158,8 @@ const Gamepad = ({ onStartClick, onLegoClick }) => {
 };
 
 const Pedro = ({ onClick, disabled }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
@@ -176,11 +178,24 @@ const Pedro = ({ onClick, disabled }) => {
         transition={{ y: { repeat: Infinity, duration: 2 } }}
         style={{ opacity: disabled ? 0.5 : 1 }}
       >
+        {!imageLoaded && (
+          <div className="w-32 md:w-40 h-32 md:h-40 bg-black/50 border-2 border-matrix-green rounded-lg flex items-center justify-center">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+              className="text-2xl"
+            >
+              🦝
+            </motion.div>
+          </div>
+        )}
         <img
           src={pedroGif}
           alt="Dancing Pedro the Raccoon"
-          className={`w-32 md:w-40 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+          className={`w-32 md:w-40 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} ${imageLoaded ? 'block' : 'hidden'}`}
           style={{ imageRendering: 'pixelated' }}
+          onLoad={() => setImageLoaded(true)}
+          loading="lazy"
         />
       </motion.a>
     </motion.div>
